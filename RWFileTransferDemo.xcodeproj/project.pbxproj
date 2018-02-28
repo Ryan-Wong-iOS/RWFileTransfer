@@ -1,0 +1,803 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 48;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		9A3FEACC20468070008CBBBB /* RWAlbumListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3FEACB20468070008CBBBB /* RWAlbumListViewModel.m */; };
+		9A3FEACF20468097008CBBBB /* RWAlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3FEACE20468097008CBBBB /* RWAlbumListViewController.m */; };
+		9A63CC41200F2934007C31C4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC40200F2934007C31C4 /* AppDelegate.m */; };
+		9A63CC44200F2934007C31C4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC43200F2934007C31C4 /* ViewController.m */; };
+		9A63CC47200F2934007C31C4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A63CC45200F2934007C31C4 /* Main.storyboard */; };
+		9A63CC49200F2934007C31C4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A63CC48200F2934007C31C4 /* Assets.xcassets */; };
+		9A63CC4C200F2934007C31C4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A63CC4A200F2934007C31C4 /* LaunchScreen.storyboard */; };
+		9A63CC4F200F2934007C31C4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC4E200F2934007C31C4 /* main.m */; };
+		9A63CC59200F2934007C31C4 /* RWFileTransferDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC58200F2934007C31C4 /* RWFileTransferDemoTests.m */; };
+		9A63CC64200F2934007C31C4 /* RWFileTransferDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC63200F2934007C31C4 /* RWFileTransferDemoUITests.m */; };
+		9A63CC7B200F2ABB007C31C4 /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC7A200F2ABB007C31C4 /* SearchViewController.m */; };
+		9A63CC86200F3523007C31C4 /* RWSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC84200F3523007C31C4 /* RWSessionManager.m */; };
+		9A63CC8A200F3641007C31C4 /* WaitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC88200F3641007C31C4 /* WaitViewController.m */; };
+		9A63CC8B200F3641007C31C4 /* WaitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A63CC89200F3641007C31C4 /* WaitViewController.xib */; };
+		9A63CC8F200F4621007C31C4 /* RWUserCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC8E200F4621007C31C4 /* RWUserCenter.m */; };
+		9A63CC92200F4762007C31C4 /* RWBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC90200F4762007C31C4 /* RWBrowser.m */; };
+		9A63CC95200F594F007C31C4 /* TransferViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC94200F594F007C31C4 /* TransferViewController.m */; };
+		9AC4F9F9204401160074D134 /* RWImageLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4F9F8204401160074D134 /* RWImageLoad.m */; };
+		9AC4F9FD204408AC0074D134 /* RWAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4F9FC204408AC0074D134 /* RWAlbumModel.m */; };
+		9AC4FA09204412310074D134 /* RWImageSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4FA08204412310074D134 /* RWImageSelectorViewController.m */; };
+		9AC4FA0C204531C50074D134 /* RWAlbumTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4FA0B204531C50074D134 /* RWAlbumTableView.m */; };
+		9AC4FA10204567560074D134 /* RWAlbumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4FA0F204567560074D134 /* RWAlbumViewModel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A63CC55200F2934007C31C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A63CC34200F2934007C31C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A63CC3B200F2934007C31C4;
+			remoteInfo = RWFileTransferDemo;
+		};
+		9A63CC60200F2934007C31C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A63CC34200F2934007C31C4 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A63CC3B200F2934007C31C4;
+			remoteInfo = RWFileTransferDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		9A3FEACA20468070008CBBBB /* RWAlbumListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAlbumListViewModel.h; sourceTree = "<group>"; };
+		9A3FEACB20468070008CBBBB /* RWAlbumListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWAlbumListViewModel.m; sourceTree = "<group>"; };
+		9A3FEACD20468097008CBBBB /* RWAlbumListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAlbumListViewController.h; sourceTree = "<group>"; };
+		9A3FEACE20468097008CBBBB /* RWAlbumListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWAlbumListViewController.m; sourceTree = "<group>"; };
+		9A63CC3C200F2934007C31C4 /* RWFileTransferDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RWFileTransferDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A63CC3F200F2934007C31C4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		9A63CC40200F2934007C31C4 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		9A63CC42200F2934007C31C4 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		9A63CC43200F2934007C31C4 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		9A63CC46200F2934007C31C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9A63CC48200F2934007C31C4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		9A63CC4B200F2934007C31C4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		9A63CC4D200F2934007C31C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A63CC4E200F2934007C31C4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		9A63CC54200F2934007C31C4 /* RWFileTransferDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RWFileTransferDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A63CC58200F2934007C31C4 /* RWFileTransferDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWFileTransferDemoTests.m; sourceTree = "<group>"; };
+		9A63CC5A200F2934007C31C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A63CC5F200F2934007C31C4 /* RWFileTransferDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RWFileTransferDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A63CC63200F2934007C31C4 /* RWFileTransferDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWFileTransferDemoUITests.m; sourceTree = "<group>"; };
+		9A63CC65200F2934007C31C4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A63CC79200F2ABB007C31C4 /* SearchViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		9A63CC7A200F2ABB007C31C4 /* SearchViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		9A63CC84200F3523007C31C4 /* RWSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWSessionManager.m; sourceTree = "<group>"; };
+		9A63CC85200F3523007C31C4 /* RWSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWSessionManager.h; sourceTree = "<group>"; };
+		9A63CC87200F3641007C31C4 /* WaitViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WaitViewController.h; sourceTree = "<group>"; };
+		9A63CC88200F3641007C31C4 /* WaitViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WaitViewController.m; sourceTree = "<group>"; };
+		9A63CC89200F3641007C31C4 /* WaitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WaitViewController.xib; sourceTree = "<group>"; };
+		9A63CC8D200F4621007C31C4 /* RWUserCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWUserCenter.h; sourceTree = "<group>"; };
+		9A63CC8E200F4621007C31C4 /* RWUserCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWUserCenter.m; sourceTree = "<group>"; };
+		9A63CC90200F4762007C31C4 /* RWBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWBrowser.m; sourceTree = "<group>"; };
+		9A63CC91200F4762007C31C4 /* RWBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWBrowser.h; sourceTree = "<group>"; };
+		9A63CC93200F594F007C31C4 /* TransferViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferViewController.h; sourceTree = "<group>"; };
+		9A63CC94200F594F007C31C4 /* TransferViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferViewController.m; sourceTree = "<group>"; };
+		9AC4F9F7204401160074D134 /* RWImageLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWImageLoad.h; sourceTree = "<group>"; };
+		9AC4F9F8204401160074D134 /* RWImageLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWImageLoad.m; sourceTree = "<group>"; };
+		9AC4F9FB204408AC0074D134 /* RWAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAlbumModel.h; sourceTree = "<group>"; };
+		9AC4F9FC204408AC0074D134 /* RWAlbumModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWAlbumModel.m; sourceTree = "<group>"; };
+		9AC4FA07204412310074D134 /* RWImageSelectorViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWImageSelectorViewController.h; sourceTree = "<group>"; };
+		9AC4FA08204412310074D134 /* RWImageSelectorViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWImageSelectorViewController.m; sourceTree = "<group>"; };
+		9AC4FA0A204531C50074D134 /* RWAlbumTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAlbumTableView.h; sourceTree = "<group>"; };
+		9AC4FA0B204531C50074D134 /* RWAlbumTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWAlbumTableView.m; sourceTree = "<group>"; };
+		9AC4FA0E204567560074D134 /* RWAlbumViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAlbumViewModel.h; sourceTree = "<group>"; };
+		9AC4FA0F204567560074D134 /* RWAlbumViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWAlbumViewModel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		9A63CC39200F2934007C31C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63CC51200F2934007C31C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63CC5C200F2934007C31C4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		9A63CC33200F2934007C31C4 = {
+			isa = PBXGroup;
+			children = (
+				9A63CC3E200F2934007C31C4 /* RWFileTransferDemo */,
+				9A63CC57200F2934007C31C4 /* RWFileTransferDemoTests */,
+				9A63CC62200F2934007C31C4 /* RWFileTransferDemoUITests */,
+				9A63CC3D200F2934007C31C4 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		9A63CC3D200F2934007C31C4 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC3C200F2934007C31C4 /* RWFileTransferDemo.app */,
+				9A63CC54200F2934007C31C4 /* RWFileTransferDemoTests.xctest */,
+				9A63CC5F200F2934007C31C4 /* RWFileTransferDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		9A63CC3E200F2934007C31C4 /* RWFileTransferDemo */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4F9FA204408910074D134 /* Model */,
+				9AC4F9F5204400860074D134 /* Tool */,
+				9A63CC71200F29D1007C31C4 /* RWFileTransfer */,
+				9A63CC72200F29D1007C31C4 /* Section */,
+				9A63CC3F200F2934007C31C4 /* AppDelegate.h */,
+				9A63CC40200F2934007C31C4 /* AppDelegate.m */,
+				9A63CC42200F2934007C31C4 /* ViewController.h */,
+				9A63CC43200F2934007C31C4 /* ViewController.m */,
+				9A63CC45200F2934007C31C4 /* Main.storyboard */,
+				9A63CC48200F2934007C31C4 /* Assets.xcassets */,
+				9A63CC4A200F2934007C31C4 /* LaunchScreen.storyboard */,
+				9A63CC4D200F2934007C31C4 /* Info.plist */,
+				9A63CC4E200F2934007C31C4 /* main.m */,
+			);
+			path = RWFileTransferDemo;
+			sourceTree = "<group>";
+		};
+		9A63CC57200F2934007C31C4 /* RWFileTransferDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC58200F2934007C31C4 /* RWFileTransferDemoTests.m */,
+				9A63CC5A200F2934007C31C4 /* Info.plist */,
+			);
+			path = RWFileTransferDemoTests;
+			sourceTree = "<group>";
+		};
+		9A63CC62200F2934007C31C4 /* RWFileTransferDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC63200F2934007C31C4 /* RWFileTransferDemoUITests.m */,
+				9A63CC65200F2934007C31C4 /* Info.plist */,
+			);
+			path = RWFileTransferDemoUITests;
+			sourceTree = "<group>";
+		};
+		9A63CC71200F29D1007C31C4 /* RWFileTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC8C200F4613007C31C4 /* RWUserCenter */,
+				9A63CC80200F334F007C31C4 /* RWSessionManager */,
+				9A63CC7C200F2E06007C31C4 /* RWBrower */,
+			);
+			path = RWFileTransfer;
+			sourceTree = "<group>";
+		};
+		9A63CC72200F29D1007C31C4 /* Section */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4FA02204411DF0074D134 /* File */,
+				9A63CC73200F29D1007C31C4 /* Wait */,
+				9A63CC75200F29D1007C31C4 /* Transfer */,
+				9A63CC77200F29D1007C31C4 /* Search */,
+			);
+			path = Section;
+			sourceTree = "<group>";
+		};
+		9A63CC73200F29D1007C31C4 /* Wait */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC74200F29D1007C31C4 /* Controller */,
+			);
+			path = Wait;
+			sourceTree = "<group>";
+		};
+		9A63CC74200F29D1007C31C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC87200F3641007C31C4 /* WaitViewController.h */,
+				9A63CC88200F3641007C31C4 /* WaitViewController.m */,
+				9A63CC89200F3641007C31C4 /* WaitViewController.xib */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9A63CC75200F29D1007C31C4 /* Transfer */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC76200F29D1007C31C4 /* Controller */,
+			);
+			path = Transfer;
+			sourceTree = "<group>";
+		};
+		9A63CC76200F29D1007C31C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC93200F594F007C31C4 /* TransferViewController.h */,
+				9A63CC94200F594F007C31C4 /* TransferViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9A63CC77200F29D1007C31C4 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC78200F29D1007C31C4 /* Controller */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
+		9A63CC78200F29D1007C31C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC79200F2ABB007C31C4 /* SearchViewController.h */,
+				9A63CC7A200F2ABB007C31C4 /* SearchViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9A63CC7C200F2E06007C31C4 /* RWBrower */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC91200F4762007C31C4 /* RWBrowser.h */,
+				9A63CC90200F4762007C31C4 /* RWBrowser.m */,
+			);
+			path = RWBrower;
+			sourceTree = "<group>";
+		};
+		9A63CC80200F334F007C31C4 /* RWSessionManager */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC85200F3523007C31C4 /* RWSessionManager.h */,
+				9A63CC84200F3523007C31C4 /* RWSessionManager.m */,
+			);
+			path = RWSessionManager;
+			sourceTree = "<group>";
+		};
+		9A63CC8C200F4613007C31C4 /* RWUserCenter */ = {
+			isa = PBXGroup;
+			children = (
+				9A63CC8D200F4621007C31C4 /* RWUserCenter.h */,
+				9A63CC8E200F4621007C31C4 /* RWUserCenter.m */,
+			);
+			path = RWUserCenter;
+			sourceTree = "<group>";
+		};
+		9AC4F9F5204400860074D134 /* Tool */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4F9F6204401070074D134 /* RWImageLoad */,
+			);
+			path = Tool;
+			sourceTree = "<group>";
+		};
+		9AC4F9F6204401070074D134 /* RWImageLoad */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4F9F7204401160074D134 /* RWImageLoad.h */,
+				9AC4F9F8204401160074D134 /* RWImageLoad.m */,
+			);
+			path = RWImageLoad;
+			sourceTree = "<group>";
+		};
+		9AC4F9FA204408910074D134 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4F9FB204408AC0074D134 /* RWAlbumModel.h */,
+				9AC4F9FC204408AC0074D134 /* RWAlbumModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9AC4FA02204411DF0074D134 /* File */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4FA03204411DF0074D134 /* ImageSelector */,
+			);
+			path = File;
+			sourceTree = "<group>";
+		};
+		9AC4FA03204411DF0074D134 /* ImageSelector */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4FA04204411DF0074D134 /* Controller */,
+				9AC4FA05204411DF0074D134 /* Model */,
+				9AC4FA06204411DF0074D134 /* View */,
+				9AC4FA0D2045673E0074D134 /* ViewModel */,
+			);
+			path = ImageSelector;
+			sourceTree = "<group>";
+		};
+		9AC4FA04204411DF0074D134 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4FA07204412310074D134 /* RWImageSelectorViewController.h */,
+				9AC4FA08204412310074D134 /* RWImageSelectorViewController.m */,
+				9A3FEACD20468097008CBBBB /* RWAlbumListViewController.h */,
+				9A3FEACE20468097008CBBBB /* RWAlbumListViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9AC4FA05204411DF0074D134 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9AC4FA06204411DF0074D134 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4FA0A204531C50074D134 /* RWAlbumTableView.h */,
+				9AC4FA0B204531C50074D134 /* RWAlbumTableView.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9AC4FA0D2045673E0074D134 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				9AC4FA0E204567560074D134 /* RWAlbumViewModel.h */,
+				9AC4FA0F204567560074D134 /* RWAlbumViewModel.m */,
+				9A3FEACA20468070008CBBBB /* RWAlbumListViewModel.h */,
+				9A3FEACB20468070008CBBBB /* RWAlbumListViewModel.m */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		9A63CC3B200F2934007C31C4 /* RWFileTransferDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A63CC68200F2934007C31C4 /* Build configuration list for PBXNativeTarget "RWFileTransferDemo" */;
+			buildPhases = (
+				9A63CC38200F2934007C31C4 /* Sources */,
+				9A63CC39200F2934007C31C4 /* Frameworks */,
+				9A63CC3A200F2934007C31C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = RWFileTransferDemo;
+			productName = RWFileTransferDemo;
+			productReference = 9A63CC3C200F2934007C31C4 /* RWFileTransferDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		9A63CC53200F2934007C31C4 /* RWFileTransferDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A63CC6B200F2934007C31C4 /* Build configuration list for PBXNativeTarget "RWFileTransferDemoTests" */;
+			buildPhases = (
+				9A63CC50200F2934007C31C4 /* Sources */,
+				9A63CC51200F2934007C31C4 /* Frameworks */,
+				9A63CC52200F2934007C31C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A63CC56200F2934007C31C4 /* PBXTargetDependency */,
+			);
+			name = RWFileTransferDemoTests;
+			productName = RWFileTransferDemoTests;
+			productReference = 9A63CC54200F2934007C31C4 /* RWFileTransferDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		9A63CC5E200F2934007C31C4 /* RWFileTransferDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A63CC6E200F2934007C31C4 /* Build configuration list for PBXNativeTarget "RWFileTransferDemoUITests" */;
+			buildPhases = (
+				9A63CC5B200F2934007C31C4 /* Sources */,
+				9A63CC5C200F2934007C31C4 /* Frameworks */,
+				9A63CC5D200F2934007C31C4 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A63CC61200F2934007C31C4 /* PBXTargetDependency */,
+			);
+			name = RWFileTransferDemoUITests;
+			productName = RWFileTransferDemoUITests;
+			productReference = 9A63CC5F200F2934007C31C4 /* RWFileTransferDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		9A63CC34200F2934007C31C4 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = RyanWong;
+				TargetAttributes = {
+					9A63CC3B200F2934007C31C4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					9A63CC53200F2934007C31C4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9A63CC3B200F2934007C31C4;
+					};
+					9A63CC5E200F2934007C31C4 = {
+						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+						TestTargetID = 9A63CC3B200F2934007C31C4;
+					};
+				};
+			};
+			buildConfigurationList = 9A63CC37200F2934007C31C4 /* Build configuration list for PBXProject "RWFileTransferDemo" */;
+			compatibilityVersion = "Xcode 8.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 9A63CC33200F2934007C31C4;
+			productRefGroup = 9A63CC3D200F2934007C31C4 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				9A63CC3B200F2934007C31C4 /* RWFileTransferDemo */,
+				9A63CC53200F2934007C31C4 /* RWFileTransferDemoTests */,
+				9A63CC5E200F2934007C31C4 /* RWFileTransferDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9A63CC3A200F2934007C31C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A63CC4C200F2934007C31C4 /* LaunchScreen.storyboard in Resources */,
+				9A63CC49200F2934007C31C4 /* Assets.xcassets in Resources */,
+				9A63CC47200F2934007C31C4 /* Main.storyboard in Resources */,
+				9A63CC8B200F3641007C31C4 /* WaitViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63CC52200F2934007C31C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63CC5D200F2934007C31C4 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		9A63CC38200F2934007C31C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A63CC44200F2934007C31C4 /* ViewController.m in Sources */,
+				9A63CC4F200F2934007C31C4 /* main.m in Sources */,
+				9A63CC8F200F4621007C31C4 /* RWUserCenter.m in Sources */,
+				9AC4FA0C204531C50074D134 /* RWAlbumTableView.m in Sources */,
+				9AC4F9FD204408AC0074D134 /* RWAlbumModel.m in Sources */,
+				9A63CC92200F4762007C31C4 /* RWBrowser.m in Sources */,
+				9AC4F9F9204401160074D134 /* RWImageLoad.m in Sources */,
+				9A63CC8A200F3641007C31C4 /* WaitViewController.m in Sources */,
+				9A63CC7B200F2ABB007C31C4 /* SearchViewController.m in Sources */,
+				9A63CC41200F2934007C31C4 /* AppDelegate.m in Sources */,
+				9A63CC86200F3523007C31C4 /* RWSessionManager.m in Sources */,
+				9A3FEACF20468097008CBBBB /* RWAlbumListViewController.m in Sources */,
+				9AC4FA10204567560074D134 /* RWAlbumViewModel.m in Sources */,
+				9AC4FA09204412310074D134 /* RWImageSelectorViewController.m in Sources */,
+				9A3FEACC20468070008CBBBB /* RWAlbumListViewModel.m in Sources */,
+				9A63CC95200F594F007C31C4 /* TransferViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63CC50200F2934007C31C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A63CC59200F2934007C31C4 /* RWFileTransferDemoTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A63CC5B200F2934007C31C4 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A63CC64200F2934007C31C4 /* RWFileTransferDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A63CC56200F2934007C31C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A63CC3B200F2934007C31C4 /* RWFileTransferDemo */;
+			targetProxy = 9A63CC55200F2934007C31C4 /* PBXContainerItemProxy */;
+		};
+		9A63CC61200F2934007C31C4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A63CC3B200F2934007C31C4 /* RWFileTransferDemo */;
+			targetProxy = 9A63CC60200F2934007C31C4 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9A63CC45200F2934007C31C4 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A63CC46200F2934007C31C4 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		9A63CC4A200F2934007C31C4 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9A63CC4B200F2934007C31C4 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		9A63CC66200F2934007C31C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		9A63CC67200F2934007C31C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		9A63CC69200F2934007C31C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CD49CVY74D;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = RWFileTransferDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lifeflower.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		9A63CC6A200F2934007C31C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = CD49CVY74D;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = RWFileTransferDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lifeflower.demo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9A63CC6C200F2934007C31C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57F7QV9B98;
+				INFOPLIST_FILE = RWFileTransferDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.rwft.RWFileTransferDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RWFileTransferDemo.app/RWFileTransferDemo";
+			};
+			name = Debug;
+		};
+		9A63CC6D200F2934007C31C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57F7QV9B98;
+				INFOPLIST_FILE = RWFileTransferDemoTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.rwft.RWFileTransferDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/RWFileTransferDemo.app/RWFileTransferDemo";
+			};
+			name = Release;
+		};
+		9A63CC6F200F2934007C31C4 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57F7QV9B98;
+				INFOPLIST_FILE = RWFileTransferDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.rwft.RWFileTransferDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RWFileTransferDemo;
+			};
+			name = Debug;
+		};
+		9A63CC70200F2934007C31C4 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 57F7QV9B98;
+				INFOPLIST_FILE = RWFileTransferDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ryan.rwft.RWFileTransferDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = RWFileTransferDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		9A63CC37200F2934007C31C4 /* Build configuration list for PBXProject "RWFileTransferDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A63CC66200F2934007C31C4 /* Debug */,
+				9A63CC67200F2934007C31C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A63CC68200F2934007C31C4 /* Build configuration list for PBXNativeTarget "RWFileTransferDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A63CC69200F2934007C31C4 /* Debug */,
+				9A63CC6A200F2934007C31C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A63CC6B200F2934007C31C4 /* Build configuration list for PBXNativeTarget "RWFileTransferDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A63CC6C200F2934007C31C4 /* Debug */,
+				9A63CC6D200F2934007C31C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A63CC6E200F2934007C31C4 /* Build configuration list for PBXNativeTarget "RWFileTransferDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A63CC6F200F2934007C31C4 /* Debug */,
+				9A63CC70200F2934007C31C4 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 9A63CC34200F2934007C31C4 /* Project object */;
+}
