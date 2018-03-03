@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TransferViewController : UITableViewController
+@interface TransferListViewController : UITableViewController
 
 @end

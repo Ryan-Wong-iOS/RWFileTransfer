@@ -8,14 +8,30 @@
 
 #import <UIKit/UIKit.h>
 @class PHFetchResult,RWAlbumModel;
-@interface RWAlbumViewModel : UIView
+@interface RWAlbumViewModel : NSObject
 
-@property (copy, nonatomic)NSString *title;
+@property (copy, nonatomic, readonly)NSString *title;
 
-@property (strong, nonatomic)PHFetchResult *result;
+@property (copy, nonatomic, readonly)PHFetchResult *result;
 
-@property (assign, nonatomic)NSInteger count;
+@property (assign, nonatomic, readonly)NSInteger count;
+
+@property (strong, nonatomic, readonly)NSArray *allAssets;
+
+@property (strong, nonatomic, readwrite)NSMutableArray *selectedAssets;
+
+@property (assign, nonatomic, readonly)NSInteger selectedCount;
+
+@property (assign, nonatomic, readonly)BOOL selected;
 
 - (instancetype)initWithModel:(RWAlbumModel *)model;
+
+- (void)selectOne:(NSInteger)index;
+
+- (void)selectedAll;
+
+- (void)removeOne:(NSInteger)index;
+
+- (void)removeAll;
 
 @end

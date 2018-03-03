@@ -7,9 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
-@class RWAlbumViewModel;
-@interface RWAlbumListViewModel : NSObject
+#import "RWBaseViewModel.h"
 
-@property (strong, nonatomic)NSArray <RWAlbumViewModel *> *albums;
+@class RWAlbumViewModel;
+@interface RWAlbumListViewModel : RWBaseViewModel
+
+@property (strong, nonatomic, readonly)NSArray <RWAlbumViewModel *> *albums;
+
+- (void)loadAlbumData:(void (^)(id))success failure:(void (^)(NSError *))failure;
 
 @end

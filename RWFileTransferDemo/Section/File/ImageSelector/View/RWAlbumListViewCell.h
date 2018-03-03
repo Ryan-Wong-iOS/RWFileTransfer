@@ -1,5 +1,5 @@
 //
-//  RWAlbumListViewController.h
+//  RWAlbumListViewCell.h
 //  RWFileTransferDemo
 //
 //  Created by RyanWong on 2018/2/28.
@@ -7,8 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "RWBaseViewController.h"
 
-@interface RWAlbumListViewController : RWBaseViewController
+@class RWAlbumViewModel;
+@interface RWAlbumListViewCell : UITableViewCell
+
+- (void)bindViewModel:(RWAlbumViewModel *)viewModel;
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RWBaseViewController.h"
 
-@interface RWImageSelectorViewController : UIViewController
+@interface RWImageSelectorViewController : RWBaseViewController
 
 @end

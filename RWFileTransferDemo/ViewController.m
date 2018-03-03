@@ -9,6 +9,8 @@
 #import "ViewController.h"
 #import "SearchViewController.h"
 #import "WaitViewController.h"
+#import "RWAlbumListViewController.h"
+#import "RWAlbumListViewModel.h"
 #import "RWBrowser.h"
 
 
@@ -42,10 +44,10 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 - (IBAction)checkAction:(id)sender {
-    
-    [[RWImageLoad shareLoad] getAlbumContentImage:YES contentVideo:NO completion:^(NSMutableArray *albums) {
-        
-    }];
+    RWAlbumListViewModel *viewModel = [[RWAlbumListViewModel alloc] init];
+    viewModel.title = @"选择相册";
+    RWAlbumListViewController *vc = [[RWAlbumListViewController alloc] initWithViewModel:viewModel];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 @end

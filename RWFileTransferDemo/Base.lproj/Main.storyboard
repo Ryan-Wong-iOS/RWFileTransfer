@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="z7x-jB-VRQ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="z7x-jB-VRQ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,26 +13,30 @@
         <scene sceneID="tne-QT-ifu">
             <objects>
                 <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rbd-DY-BEK"/>
+                        <viewControllerLayoutGuide type="bottom" id="ERg-Wg-KZ3"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dcp-LK-5x5">
-                                <rect key="frame" x="156" y="218.5" width="62" height="30"/>
+                                <rect key="frame" x="156.5" y="218.5" width="62" height="30"/>
                                 <state key="normal" title="我要发送"/>
                                 <connections>
                                     <action selector="sendAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="DsZ-jX-7di"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Oxt-EZ-bLz">
-                                <rect key="frame" x="156" y="318.5" width="62" height="30"/>
+                                <rect key="frame" x="156.5" y="318.5" width="62" height="30"/>
                                 <state key="normal" title="我要接收"/>
                                 <connections>
                                     <action selector="receiveAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LQW-qK-aTd"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YP9-Wb-IMN">
-                                <rect key="frame" x="141" y="418.5" width="92" height="30"/>
+                                <rect key="frame" x="141.5" y="418.5" width="92" height="30"/>
                                 <state key="normal" title="接收到的文件"/>
                                 <connections>
                                     <action selector="checkAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="RVb-Wr-yGC"/>
@@ -49,7 +52,6 @@
                             <constraint firstItem="YP9-Wb-IMN" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mSM-YL-brv"/>
                             <constraint firstItem="Oxt-EZ-bLz" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="sio-Wi-k3c"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="cdW-iL-Rhr"/>
                 </viewController>

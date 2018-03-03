@@ -7,8 +7,18 @@
 //
 
 #import "RWImageSelectorViewController.h"
+#import "RWImageSelectorViewModel.h"
+#import "RWAlbumViewModel.h"
+#import "RWimageViewModel.h"
+#import "RWPhotoCollectView.h"
+
+#import "RWImageLoad.h"
 
 @interface RWImageSelectorViewController ()
+
+@property (strong, nonatomic)RWPhotoCollectView *photoCV;
+
+@property (strong, nonatomic)RWImageSelectorViewModel *viewModel;
 
 @end
 
@@ -16,7 +26,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.viewModel = self.baseViewModel;
+    self.title = self.viewModel.title;
+    
+    [self.view addSubview:self.photoCV];
+
+    [_photoCV reloadWithData:_viewModel.albumViewModel];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -24,14 +40,11 @@
     // Dispose of any resources that can be recreated.
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (RWPhotoCollectView *)photoCV {
+    if (!_photoCV) {
+        _photoCV = [[RWPhotoCollectView alloc] initWithFrame:self.view.frame];
+    }
+    return _photoCV;
 }
-*/
 
 @end

@@ -7,8 +7,7 @@
 //
 
 #import "RWImageLoad.h"
-#import <Photos/Photos.h>
-
+#import "RWConfig.h"
 #import "RWAlbumModel.h"
 
 static RWImageLoad *_instance = nil;
@@ -39,15 +38,19 @@ static RWImageLoad *_instance = nil;
     {
         if (![collection isKindOfClass:[PHAssetCollection class]]) continue; // 有可能是PHCollectionList类的的对象，过滤掉
         PHFetchResult<PHAsset *>  *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:option];
-        RWAlbumModel *model = [self modelWithResult:fetchResult name:collection.localizedTitle];
-        [albums addObject:model];
+        if (fetchResult.count > 0) {
+            RWAlbumModel *model = [self modelWithResult:fetchResult name:collection.localizedTitle];
+            [albums addObject:model];
+        }
     }
     
     // 获得相机胶卷
     PHAssetCollection *cameraRoll = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeSmartAlbumUserLibrary options:nil].lastObject;
     PHFetchResult<PHAsset *>  *fetchResult = [PHAsset fetchAssetsInAssetCollection:cameraRoll options:option];
-    RWAlbumModel *model = [self modelWithResult:fetchResult name:cameraRoll.localizedTitle];
-    [albums insertObject:model atIndex:0];
+    if (fetchResult.count > 0) {
+        RWAlbumModel *model = [self modelWithResult:fetchResult name:cameraRoll.localizedTitle];
+        [albums insertObject:model atIndex:0];
+    }
     
     if (completion) {
         completion(albums);
@@ -61,4 +64,15 @@ static RWImageLoad *_instance = nil;
     album.count = result.count;
     return album;
 }
+
+- (PHImageRequestID)getPhotoWithAsset:(id)asset photoWidth:(CGFloat)photoWidth completion:(void (^)(UIImage *photo,NSDictionary *info,BOOL isDegraded))completion progressHandler:(void (^)(double progress, NSError *error, BOOL *stop, NSDictionary *info))progressHandler networkAccessAllowed:(BOOL)networkAccessAllowed
+{
+    
+    PHImageManager *manger = [PHImageManager defaultManager];
+    int32_t imageRequestID = [manger requestImageForAsset:asset targetSize:CGSizeMake(([[UIScreen mainScreen] bounds].size.width-15)/3, ([[UIScreen mainScreen] bounds].size.width-15)/3) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        completion(result,info,true);
+    }];
+    return imageRequestID;
+}
+
 @end

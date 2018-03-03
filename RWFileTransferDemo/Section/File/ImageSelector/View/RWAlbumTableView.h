@@ -10,4 +10,10 @@
 
 @interface RWAlbumTableView : UIView
 
+- (instancetype) initWithViewController:(UIViewController *)vc frame:(CGRect)frame;
+
+- (void)reloadData;
+
+- (void)reloadWithData:(NSArray *)data;
+
 @end
