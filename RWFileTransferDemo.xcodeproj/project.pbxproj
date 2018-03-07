@@ -40,6 +40,10 @@
 		9AC4FA09204412310074D134 /* RWImageSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4FA08204412310074D134 /* RWImageSelectorViewController.m */; };
 		9AC4FA0C204531C50074D134 /* RWAlbumTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4FA0B204531C50074D134 /* RWAlbumTableView.m */; };
 		9AC4FA10204567560074D134 /* RWAlbumViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4FA0F204567560074D134 /* RWAlbumViewModel.m */; };
+		9AD1DD04204A385E00C51B8F /* RWInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1DD03204A385E00C51B8F /* RWInputStream.m */; };
+		9AD1DD07204A3F7000C51B8F /* RWStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1DD06204A3F7000C51B8F /* RWStream.m */; };
+		9AD1DD0A204A44DC00C51B8F /* RWOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1DD09204A44DC00C51B8F /* RWOutputStream.m */; };
+		9AD1DD10204AA36200C51B8F /* RWTransferCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AD1DD0F204AA36200C51B8F /* RWTransferCenter.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -124,6 +128,14 @@
 		9AC4FA0B204531C50074D134 /* RWAlbumTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWAlbumTableView.m; sourceTree = "<group>"; };
 		9AC4FA0E204567560074D134 /* RWAlbumViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAlbumViewModel.h; sourceTree = "<group>"; };
 		9AC4FA0F204567560074D134 /* RWAlbumViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWAlbumViewModel.m; sourceTree = "<group>"; };
+		9AD1DD02204A385E00C51B8F /* RWInputStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWInputStream.h; sourceTree = "<group>"; };
+		9AD1DD03204A385E00C51B8F /* RWInputStream.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWInputStream.m; sourceTree = "<group>"; };
+		9AD1DD05204A3F7000C51B8F /* RWStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWStream.h; sourceTree = "<group>"; };
+		9AD1DD06204A3F7000C51B8F /* RWStream.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWStream.m; sourceTree = "<group>"; };
+		9AD1DD08204A44DC00C51B8F /* RWOutputStream.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWOutputStream.h; sourceTree = "<group>"; };
+		9AD1DD09204A44DC00C51B8F /* RWOutputStream.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWOutputStream.m; sourceTree = "<group>"; };
+		9AD1DD0E204AA36200C51B8F /* RWTransferCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWTransferCenter.h; sourceTree = "<group>"; };
+		9AD1DD0F204AA36200C51B8F /* RWTransferCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWTransferCenter.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -191,6 +203,8 @@
 			children = (
 				9A5F9E6A204932C900C7BF44 /* RWTransferViewModel.h */,
 				9A5F9E6B204932C900C7BF44 /* RWTransferViewModel.m */,
+				9AD1DD0E204AA36200C51B8F /* RWTransferCenter.h */,
+				9AD1DD0F204AA36200C51B8F /* RWTransferCenter.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -258,6 +272,7 @@
 		9A63CC71200F29D1007C31C4 /* RWFileTransfer */ = {
 			isa = PBXGroup;
 			children = (
+				9AD1DD01204A384900C51B8F /* RWStream */,
 				9A63CC8C200F4613007C31C4 /* RWUserCenter */,
 				9A63CC80200F334F007C31C4 /* RWSessionManager */,
 				9A63CC7C200F2E06007C31C4 /* RWBrower */,
@@ -453,6 +468,19 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
+		9AD1DD01204A384900C51B8F /* RWStream */ = {
+			isa = PBXGroup;
+			children = (
+				9AD1DD05204A3F7000C51B8F /* RWStream.h */,
+				9AD1DD06204A3F7000C51B8F /* RWStream.m */,
+				9AD1DD02204A385E00C51B8F /* RWInputStream.h */,
+				9AD1DD03204A385E00C51B8F /* RWInputStream.m */,
+				9AD1DD08204A44DC00C51B8F /* RWOutputStream.h */,
+				9AD1DD09204A44DC00C51B8F /* RWOutputStream.m */,
+			);
+			path = RWStream;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -602,16 +630,20 @@
 				9A593D662047B0CB00F09F73 /* RWPhotoViewCell.m in Sources */,
 				9A63CC7B200F2ABB007C31C4 /* SearchViewController.m in Sources */,
 				9A593D5F2047A6D700F09F73 /* RWPhotoModel.m in Sources */,
+				9AD1DD07204A3F7000C51B8F /* RWStream.m in Sources */,
 				9A63CC41200F2934007C31C4 /* AppDelegate.m in Sources */,
 				9A63CC86200F3523007C31C4 /* RWSessionManager.m in Sources */,
+				9AD1DD10204AA36200C51B8F /* RWTransferCenter.m in Sources */,
 				9A3FEACF20468097008CBBBB /* RWAlbumListViewController.m in Sources */,
 				9AC4FA10204567560074D134 /* RWAlbumViewModel.m in Sources */,
+				9AD1DD04204A385E00C51B8F /* RWInputStream.m in Sources */,
 				9A3FEAD820468EDC008CBBBB /* RWBaseViewModel.m in Sources */,
 				9AC4FA09204412310074D134 /* RWImageSelectorViewController.m in Sources */,
 				9A593D5C2047A5B600F09F73 /* RWimageViewModel.m in Sources */,
 				9A5F9E6C204932C900C7BF44 /* RWTransferViewModel.m in Sources */,
 				9A3FEACC20468070008CBBBB /* RWAlbumListViewModel.m in Sources */,
 				9A593D622047B07500F09F73 /* RWPhotoCollectView.m in Sources */,
+				9AD1DD0A204A44DC00C51B8F /* RWOutputStream.m in Sources */,
 				9A593D592047979F00F09F73 /* RWImageSelectorViewModel.m in Sources */,
 				9A63CC95200F594F007C31C4 /* TransferListViewController.m in Sources */,
 			);

@@ -17,10 +17,6 @@ static CGFloat const margin = 3;
 static NSInteger const cols = 3;
 #define cellWH ((kWidth - (cols - 1) * margin) / cols)
 
-static CGSize CGSizeScale(CGSize size, CGFloat scale) {
-    return CGSizeMake(size.width * scale, size.height * scale);
-}
-
 @interface RWPhotoCollectView()<UICollectionViewDelegate, UICollectionViewDataSource, UIScrollViewDelegate>
 
 @property (strong, nonatomic)UICollectionView *cv;

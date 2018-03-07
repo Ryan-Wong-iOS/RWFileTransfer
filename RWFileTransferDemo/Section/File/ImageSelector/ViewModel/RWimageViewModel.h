@@ -13,6 +13,8 @@
 @class RWPhotoModel;
 @interface RWimageViewModel : RWBaseViewModel
 
+@property (copy, nonatomic)RWPhotoModel *model;
+
 @property (copy, nonatomic, readonly)NSString *name;
 
 @property (copy, nonatomic, readonly)PHAsset *asset;

@@ -13,8 +13,6 @@
 
 @interface RWimageViewModel()
 
-@property (copy, nonatomic)RWPhotoModel *model;
-
 @property (copy, nonatomic, readwrite)NSString *name;
 
 @property (copy, nonatomic, readwrite)PHAsset *asset;

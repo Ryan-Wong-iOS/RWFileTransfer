@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MCSession.h>
 
+static NSString *const kRWSessionStateConnectedNotification = @"RWSessionStateConnectedNotification";
+
 @interface RWSessionManager : NSObject
 
 @property (strong, nonatomic)MCSession *session;

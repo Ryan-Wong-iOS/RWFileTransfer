@@ -74,10 +74,7 @@
 
 - (void)reloadWithData:(NSArray *)data {
     [self.albums removeAllObjects];
-    for (RWAlbumModel *albumModel in data) {
-        RWAlbumViewModel *albumViewModel = [[RWAlbumViewModel alloc] initWithModel:albumModel];
-        [self.albums addObject:albumViewModel];
-    }
+    [self.albums setArray:data];
     [_tv reloadData];
 }
 

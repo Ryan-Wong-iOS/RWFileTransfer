@@ -8,6 +8,8 @@
 
 #import "WaitViewController.h"
 #import "RWBrowser.h"
+#import "RWSessionManager.h"
+#import "TransferListViewController.h"
 
 @interface WaitViewController ()
 
@@ -27,6 +29,15 @@
     self.title = @"等待连接";
     
     [[RWBrowser shareInstance] startWaitForConnect];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connect) name:kRWSessionStateConnectedNotification object:nil];
+}
+
+- (void)connect {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        TransferListViewController *vc = [[TransferListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    });
 }
 
 - (void)didReceiveMemoryWarning {

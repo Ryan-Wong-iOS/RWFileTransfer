@@ -8,13 +8,14 @@
 
 #import "RWAlbumListViewController.h"
 #import "RWAlbumTableView.h"
-#import "RWAlbumListViewModel.h"
 
 @interface RWAlbumListViewController ()
 
 @property (strong, nonatomic)RWAlbumListViewModel *viewModel;
 
 @property (strong, nonatomic)RWAlbumTableView *albumTv;
+
+@property (strong, nonatomic)UIButton *sendBtn;
 
 @end
 
@@ -34,12 +35,19 @@
     
     [self.view addSubview:self.albumTv];
     
+    [self.view addSubview:self.sendBtn];
+    
     [self.viewModel loadAlbumData:^(id responseObject) {
         NSLog(@"%@",self.viewModel.albums);
         [self.albumTv reloadWithData:self.viewModel.albums];
     } failure:^(NSError *error) {
         
     }];
+}
+
+- (void)sendAction {
+    [self.viewModel submitAllTransferDatas];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -52,6 +60,16 @@
         _albumTv = [[RWAlbumTableView alloc] initWithViewController:self frame:self.view.frame];
     }
     return _albumTv;
+}
+
+-(UIButton *)sendBtn {
+    if (!_sendBtn) {
+        _sendBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, self.view.frame.size.height - 50, self.view.frame.size.width, 50)];
+        [_sendBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [_sendBtn setTitle:@"发送" forState:UIControlStateNormal];
+        [_sendBtn addTarget:self action:@selector(sendAction) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _sendBtn;
 }
 
 @end

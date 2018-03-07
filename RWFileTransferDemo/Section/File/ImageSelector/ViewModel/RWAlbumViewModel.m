@@ -98,4 +98,12 @@
     return _selectedAssets.count;
 }
 
+-(NSArray *)returnSelectedModels {
+    NSMutableArray *array = [NSMutableArray array];
+    for (RWimageViewModel *imageModel in _selectedAssets) {
+        [array addObject:imageModel.model];
+    }
+    return array;
+}
+
 @end

@@ -7,6 +7,8 @@
 //
 
 #import "TransferListViewController.h"
+#import "RWAlbumListViewController.h"
+#import "RWTransferCenter.h"
 
 @interface TransferListViewController ()
 
@@ -14,9 +16,25 @@
 
 @implementation TransferListViewController
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    NSArray *array = [RWTransferCenter center].readyTaskDatas;
+    NSLog(@"任务准备：%@", array);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIBarButtonItem *chooseBtn = [[UIBarButtonItem alloc] initWithTitle:@"选择文件" style:UIBarButtonItemStylePlain target:self action:@selector(chooseAction)];
+    self.navigationItem.rightBarButtonItem = chooseBtn;
+}
+
+- (void)chooseAction {
+    RWAlbumListViewModel *viewModel = [[RWAlbumListViewModel alloc] init];
+    viewModel.title = @"选择相册";
+    RWAlbumListViewController *vc = [[RWAlbumListViewController alloc] initWithViewModel:viewModel];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

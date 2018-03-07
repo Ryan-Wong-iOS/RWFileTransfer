@@ -10,6 +10,7 @@
 #import "RWBrowser.h"
 #import "RWSessionManager.h"
 #import "RWUserCenter.h"
+#import "TransferListViewController.h"
 
 @interface SearchViewController ()
 
@@ -38,8 +39,16 @@
         [self.peerArray setArray:peerArray];
         [self.tableView reloadData];
     };
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connect) name:kRWSessionStateConnectedNotification object:nil];
 }
 
+- (void)connect {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        TransferListViewController *vc = [[TransferListViewController alloc] init];
+        [self.navigationController pushViewController:vc animated:YES];
+    });
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

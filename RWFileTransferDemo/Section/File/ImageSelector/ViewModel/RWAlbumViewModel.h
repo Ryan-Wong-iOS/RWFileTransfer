@@ -34,4 +34,6 @@
 
 - (void)removeAll;
 
+- (NSArray *)returnSelectedModels;
+
 @end

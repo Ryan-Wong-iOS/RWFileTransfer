@@ -75,4 +75,13 @@ static RWImageLoad *_instance = nil;
     return imageRequestID;
 }
 
+- (PHImageRequestID)getPhotoDataWithAsset:(id)asset completion:(void (^)(NSData *imageData, NSString *dataUTI, NSDictionary * info))completion {
+    
+    PHImageManager *manger = [PHImageManager defaultManager];
+    int32_t imageRequestID = [manger requestImageDataForAsset:asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+        !completion?:completion(imageData, dataUTI, info);
+    }];
+    return imageRequestID;
+}
+
 @end

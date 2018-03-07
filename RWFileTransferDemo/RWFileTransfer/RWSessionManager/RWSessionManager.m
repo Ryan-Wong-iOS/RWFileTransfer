@@ -35,6 +35,8 @@
     if (state == MCSessionStateConnected) {
         NSLog(@"与%@连接上",peerID.displayName);
         _userCenter.session = session;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRWSessionStateConnectedNotification object:nil];
     } else if (state == MCSessionStateConnecting) {
         NSLog(@"与%@连接中",peerID.displayName);
     } else if (state == MCSessionStateNotConnected) {

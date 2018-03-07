@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "RWBaseViewController.h"
+#import "RWAlbumListViewModel.h"
 
 @interface RWAlbumListViewController : RWBaseViewController
 
