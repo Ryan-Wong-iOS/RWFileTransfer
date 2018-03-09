@@ -31,19 +31,41 @@ static RWTransferCenter *_center = nil;
         RWTransferViewModel *viewModel = [[RWTransferViewModel alloc] initWithModel:model];
         viewModel.source = RWTransferSourceMine;
         [array addObject:viewModel];
+        NSLog(@"%@", viewModel.timestampText);
     }
     @synchronized(self) {
         [self.readyTaskDatas addObjectsFromArray:array];
     }
 }
 
+- (RWTransferViewModel *)currentReadyTask {
+    RWTransferViewModel *viewModel;
+    @synchronized(self) {
+        viewModel = self.readyTaskDatas[0];
+    }
+    return viewModel;
+}
 
+- (void)nextReadyTask {
+    @synchronized(self) {
+        [self.readyTaskDatas removeObjectAtIndex:0];
+    }
+}
+
+#pragma mark - Lazy load
 
 - (NSMutableArray *)readyTaskDatas {
     if (!_readyTaskDatas) {
         _readyTaskDatas = [NSMutableArray array];
     }
     return _readyTaskDatas;
+}
+
+- (NSMutableArray *)allTaskDatas {
+    if (!_allTaskDatas) {
+        _allTaskDatas = [NSMutableArray array];
+    }
+    return _allTaskDatas;
 }
 
 @end

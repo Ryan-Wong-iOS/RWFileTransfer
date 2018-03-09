@@ -8,7 +8,7 @@
 
 #import "SearchViewController.h"
 #import "RWBrowser.h"
-#import "RWSessionManager.h"
+#import "RWSession.h"
 #import "RWUserCenter.h"
 #import "TransferListViewController.h"
 
@@ -24,13 +24,22 @@
     [super viewDidDisappear:animated];
     
     [[RWBrowser shareInstance] stopSearch];
-    [RWSessionManager kickPeer:[RWUserCenter center].myPeerID];
+    [RWSession kickPeer:[RWUserCenter center].myPeerID];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[RWUserCenter center].session.session disconnect];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"搜索设备";
+    
+    NSString *deviceName = [UIDevice currentDevice].name;
+    [[RWBrowser shareInstance] setConfigurationWithName:deviceName Identifier:@"rw"];
     
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"PeerIdCell"];
     

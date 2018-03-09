@@ -24,6 +24,8 @@ typedef NS_ENUM(NSUInteger, RWStreamEvent) {
 
 @interface RWStream : NSObject
 
+@property (strong, nonatomic)NSStream *stream;
+
 @property (assign, nonatomic) id<RWStreamDelegate> delegate;
 
 - (instancetype)initWithInputStream:(NSInputStream *)inputStream;
@@ -32,6 +34,6 @@ typedef NS_ENUM(NSUInteger, RWStreamEvent) {
 - (void)open;
 - (void)close;
 - (UInt32)readData:(uint8_t *)data maxLength:(UInt32)maxLength;
-- (UInt32)writeData:(uint8_t *)data maxLength:(UInt32)maxLength;
+- (UInt32)writeData:(const uint8_t *)data maxLength:(UInt32)maxLength;
 
 @end

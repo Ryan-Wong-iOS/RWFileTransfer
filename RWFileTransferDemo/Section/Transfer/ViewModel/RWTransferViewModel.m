@@ -27,7 +27,7 @@ static NSString *const RWTransferStatusErrorText = @"错误";
 
 @property (copy, nonatomic, readwrite)NSString *statusText;
 
-@property (assign, nonatomic, readwrite)NSString *timestampText;
+@property (copy, nonatomic, readwrite)NSString *timestampText;
 
 @end
 
@@ -82,7 +82,7 @@ static NSString *const RWTransferStatusErrorText = @"错误";
 
 - (NSString *)getDefaultTimestamp {
     NSTimeInterval timestamp = [[NSDate date] timeIntervalSince1970];
-    NSString *timestampText = [NSString stringWithFormat:@"%ld", (long)timestamp];
+    NSString *timestampText = [NSString stringWithFormat:@"%f", timestamp];
     return timestampText;
 }
 

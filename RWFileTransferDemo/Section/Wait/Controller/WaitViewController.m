@@ -8,7 +8,8 @@
 
 #import "WaitViewController.h"
 #import "RWBrowser.h"
-#import "RWSessionManager.h"
+#import "RWSession.h"
+#import "RWUserCenter.h"
 #import "TransferListViewController.h"
 
 @interface WaitViewController ()
@@ -23,10 +24,19 @@
     [[RWBrowser shareInstance] stopWait];
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    [[RWUserCenter center].session.session disconnect];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.title = @"等待连接";
+    
+    NSString *deviceName = [UIDevice currentDevice].name;
+    [[RWBrowser shareInstance] setConfigurationWithName:deviceName Identifier:@"rw"];
     
     [[RWBrowser shareInstance] startWaitForConnect];
     

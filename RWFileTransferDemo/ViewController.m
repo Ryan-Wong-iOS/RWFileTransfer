@@ -24,9 +24,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    NSString *deviceName = [UIDevice currentDevice].name;
-    [[RWBrowser shareInstance] setConfigurationWithName:deviceName Identifier:@"rw"];
 }
 
 

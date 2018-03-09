@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class RWPhotoModel;
+@class RWPhotoModel,RWTransferViewModel;
 @interface RWTransferCenter : NSObject
 
 @property (strong, nonatomic)NSMutableArray *readyTaskDatas;
@@ -18,5 +18,9 @@
 + (instancetype)center;
 
 - (void)setupReadyTaskDatas:(NSArray <RWPhotoModel *>*)datas;
+
+- (RWTransferViewModel *)currentReadyTask;
+
+- (void)nextReadyTask;
 
 @end

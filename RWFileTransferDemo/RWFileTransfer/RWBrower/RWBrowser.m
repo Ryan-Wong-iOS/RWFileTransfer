@@ -8,14 +8,12 @@
 
 #import "RWBrowser.h"
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
-#import "RWSessionManager.h"
+#import "RWSession.h"
 #import "RWUserCenter.h"
 
 @interface RWBrowser()<MCNearbyServiceBrowserDelegate, MCNearbyServiceAdvertiserDelegate>
 
 @property (strong, nonatomic)RWUserCenter *userCenter;
-
-@property (strong, nonatomic)RWSessionManager *sessionManager;
 
 @property (strong, nonatomic)MCNearbyServiceAdvertiser *advertiser;
 
@@ -41,8 +39,7 @@ static RWBrowser *_instance = nil;
     _userCenter.name = name;
     _userCenter.identifier = identifier;
     _userCenter.myPeerID = [[MCPeerID alloc] initWithDisplayName:name];
-    
-    _sessionManager = [[RWSessionManager alloc] initWithPeer:_userCenter.myPeerID];
+    _userCenter.session = [[RWSession alloc] initWithPeer:_userCenter.myPeerID];
 }
 
 - (void)startSearchNearbyService {
@@ -68,11 +65,11 @@ static RWBrowser *_instance = nil;
 }
 
 - (void)invitePeer:(MCPeerID *)peerId {
-    if ([_sessionManager.session.connectedPeers containsObject:peerId]) {
+    if ([_userCenter.session.session.connectedPeers containsObject:peerId]) {
         NSLog(@"与%@已经连接了,无须再次连接",peerId.displayName);
         return;
     }
-    [_browser invitePeer:peerId toSession:_sessionManager.session withContext:nil timeout:15];
+    [_browser invitePeer:peerId toSession:_userCenter.session.session withContext:nil timeout:15];
 }
 
 #pragma mark - Browser Delegate
@@ -112,7 +109,7 @@ static RWBrowser *_instance = nil;
 
 #pragma mark - MCNearbyServiceAdvertiserDelegate
 - (void)advertiser:(MCNearbyServiceAdvertiser *)advertiser didReceiveInvitationFromPeer:(MCPeerID *)peerID withContext:(nullable NSData *)context invitationHandler:(void (^)(BOOL accept, MCSession * __nullable session))invitationHandler {
-    invitationHandler(YES, _sessionManager.session);
+    invitationHandler(YES, _userCenter.session.session);
 }
 
 #pragma mark - Lazy load

@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <MultipeerConnectivity/MultipeerConnectivity.h>
+#import "RWSession.h"
 
 @interface RWUserCenter : NSObject
 
@@ -17,7 +18,7 @@
 
 @property (strong, nonatomic)MCPeerID *myPeerID;
 
-@property (strong, nonatomic)MCSession *session;
+@property (strong, nonatomic)RWSession *session;
 
 + (instancetype)center;
 

@@ -44,7 +44,7 @@ typedef NS_ENUM(NSUInteger, RWTransferSource) {
 
 @property (assign, nonatomic)RWTransferSource source;
 
-@property (assign, nonatomic, readonly)NSString *timestampText;
+@property (copy, nonatomic, readonly)NSString *timestampText;
 
 - (instancetype) initWithModel:(RWPhotoModel *)model;
 

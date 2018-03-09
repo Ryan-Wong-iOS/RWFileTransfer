@@ -10,8 +10,6 @@
 
 @interface RWStream()<NSStreamDelegate>
 
-@property (strong, nonatomic)NSStream *stream;
-
 @end
 
 @implementation RWStream
@@ -73,7 +71,7 @@
     return (UInt32)[(NSInputStream *)self.stream read:data maxLength:maxLength];
 }
 
-- (UInt32)writeData:(uint8_t *)data maxLength:(UInt32)maxLength {
+- (UInt32)writeData:(const uint8_t *)data maxLength:(UInt32)maxLength {
     return (UInt32)[(NSOutputStream *)self.stream write:data maxLength:maxLength];
 }
 

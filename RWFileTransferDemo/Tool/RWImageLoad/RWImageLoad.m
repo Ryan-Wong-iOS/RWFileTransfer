@@ -78,8 +78,19 @@ static RWImageLoad *_instance = nil;
 - (PHImageRequestID)getPhotoDataWithAsset:(id)asset completion:(void (^)(NSData *imageData, NSString *dataUTI, NSDictionary * info))completion {
     
     PHImageManager *manger = [PHImageManager defaultManager];
-    int32_t imageRequestID = [manger requestImageDataForAsset:asset options:nil resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+    PHImageRequestOptions *option = [[PHImageRequestOptions alloc] init];
+    option.synchronous = YES;
+    int32_t imageRequestID = [manger requestImageDataForAsset:asset options:option resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+//        if (orientation != UIImageOrientationUp) {
+            UIImage* image = [UIImage imageWithData:imageData];
+            // 尽然弯了,那就板正一下
+//            image = [image fixOrientation];
+            // 新的 数据信息 （不准确的）
+            imageData = UIImageJPEGRepresentation(image, 1.0);
+//        }
+        
         !completion?:completion(imageData, dataUTI, info);
+        
     }];
     return imageRequestID;
 }
