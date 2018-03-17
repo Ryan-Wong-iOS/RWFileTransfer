@@ -17,4 +17,7 @@
 
 @property (assign, nonatomic)NSInteger count;
 
+//文件类型，0 照片, 1 视频
+@property (assign, nonatomic)NSInteger fileType;
+
 @end

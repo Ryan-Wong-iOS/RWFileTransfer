@@ -11,6 +11,8 @@
 
 #import "RWImageLoad.h"
 
+UInt32 const kRWStreamWriteMaxLength = 4096;
+
 @interface RWOutputStream()<RWStreamDelegate>
 
 @property (strong, nonatomic)RWStream *stream;
@@ -78,8 +80,15 @@
 
 - (void)streamWithAsset:(id)asset {
     __weak typeof(self)weakSelf = self;
-    [[RWImageLoad shareLoad] getPhotoDataWithAsset:asset completion:^(NSData *imageData, NSString *dataUTI, NSDictionary *info) {
-        weakSelf.imageData = [NSData dataWithData:imageData];
+//    [[RWImageLoad shareLoad] getPhotoDataWithAsset:asset completion:^(NSData *imageData, NSString *dataUTI, NSDictionary *info) {
+//        weakSelf.imageData = [NSData dataWithData:imageData];
+//        weakSelf.totalSize = _imageData.length;
+//        weakSelf.sendSize = 0;
+//        weakSelf.readyForSend = YES;
+//    }];
+    
+    [[RWImageLoad shareLoad] getVideoDataWithAsset:asset completion:^(NSData *data) {
+        weakSelf.imageData = [NSData dataWithData:data];
         weakSelf.totalSize = _imageData.length;
         weakSelf.sendSize = 0;
         weakSelf.readyForSend = YES;
@@ -87,22 +96,19 @@
 }
 
 - (void)sendDataChunk {
-    
-//    while (_sendSize < _totalSize) {
+    @autoreleasepool {
         NSMutableData *data = [NSMutableData dataWithData:_imageData];
         uint8_t *readBytes = (uint8_t *)[data mutableBytes];
         readBytes += _sendSize;
         NSUInteger data_len = [data length];
-        unsigned long long len = (data_len - _sendSize >= 1024) ? 1024 : (data_len - _sendSize);
+        unsigned long long len = (data_len - _sendSize >= kRWStreamWriteMaxLength) ? kRWStreamWriteMaxLength : (data_len - _sendSize);
         uint8_t buf[len];
         (void)memcpy(buf, readBytes, len);
         len = [self.stream writeData:(const uint8_t *)buf maxLength:(UInt32)len];
         _sendSize += len;
         NSLog(@"Sending : %u", (unsigned int)len);
         NSLog(@"Sending progress : %u / %u", (unsigned int)_sendSize, (unsigned int)_totalSize);
-//    }
-    
-//    [self stop];
+    }
 }
 
 #pragma mark - RWStreamDelegate

@@ -10,7 +10,7 @@
 #import "RWStream.h"
 #import "RWFileManager.h"
 
-UInt32 const kRWStreamReadMaxLength = 1024;
+UInt32 const kRWStreamReadMaxLength = 4096;
 
 @interface RWInputStream()<RWStreamDelegate>
 

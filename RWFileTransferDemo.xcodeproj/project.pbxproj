@@ -37,6 +37,10 @@
 		9A63CC92200F4762007C31C4 /* RWBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC90200F4762007C31C4 /* RWBrowser.m */; };
 		9A63CC95200F594F007C31C4 /* TransferListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC94200F594F007C31C4 /* TransferListViewController.m */; };
 		9AC1AD9820526E9B00288FF5 /* RWFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1AD9620526E9B00288FF5 /* RWFileManager.m */; };
+		9AC1AD9D205285C500288FF5 /* RWVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1AD9C205285C500288FF5 /* RWVideoListViewController.m */; };
+		9AC1ADA520528D7600288FF5 /* RWVideoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1ADA420528D7600288FF5 /* RWVideoTableView.m */; };
+		9AC1ADA920528E2400288FF5 /* RWVideoListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1ADA720528E2400288FF5 /* RWVideoListViewCell.m */; };
+		9AC1ADAA20528E2400288FF5 /* RWVideoListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9AC1ADA820528E2400288FF5 /* RWVideoListViewCell.xib */; };
 		9AC4F9F9204401160074D134 /* RWImageLoad.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4F9F8204401160074D134 /* RWImageLoad.m */; };
 		9AC4F9FD204408AC0074D134 /* RWAlbumModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4F9FC204408AC0074D134 /* RWAlbumModel.m */; };
 		9AC4FA09204412310074D134 /* RWImageSelectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC4FA08204412310074D134 /* RWImageSelectorViewController.m */; };
@@ -124,6 +128,13 @@
 		9A63CC94200F594F007C31C4 /* TransferListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferListViewController.m; sourceTree = "<group>"; };
 		9AC1AD9620526E9B00288FF5 /* RWFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWFileManager.m; sourceTree = "<group>"; };
 		9AC1AD9720526E9B00288FF5 /* RWFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWFileManager.h; sourceTree = "<group>"; };
+		9AC1AD9B205285C500288FF5 /* RWVideoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWVideoListViewController.h; sourceTree = "<group>"; };
+		9AC1AD9C205285C500288FF5 /* RWVideoListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWVideoListViewController.m; sourceTree = "<group>"; };
+		9AC1ADA320528D7600288FF5 /* RWVideoTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWVideoTableView.h; sourceTree = "<group>"; };
+		9AC1ADA420528D7600288FF5 /* RWVideoTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWVideoTableView.m; sourceTree = "<group>"; };
+		9AC1ADA620528E2400288FF5 /* RWVideoListViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWVideoListViewCell.h; sourceTree = "<group>"; };
+		9AC1ADA720528E2400288FF5 /* RWVideoListViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWVideoListViewCell.m; sourceTree = "<group>"; };
+		9AC1ADA820528E2400288FF5 /* RWVideoListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RWVideoListViewCell.xib; sourceTree = "<group>"; };
 		9AC4F9F7204401160074D134 /* RWImageLoad.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWImageLoad.h; sourceTree = "<group>"; };
 		9AC4F9F8204401160074D134 /* RWImageLoad.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWImageLoad.m; sourceTree = "<group>"; };
 		9AC4F9FB204408AC0074D134 /* RWAlbumModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAlbumModel.h; sourceTree = "<group>"; };
@@ -395,6 +406,44 @@
 			path = RWUserCenter;
 			sourceTree = "<group>";
 		};
+		9AC1AD992052828300288FF5 /* VideoSelector */ = {
+			isa = PBXGroup;
+			children = (
+				9AC1ADA220528D5E00288FF5 /* View */,
+				9AC1AD9E2052865700288FF5 /* ViewModel */,
+				9AC1AD9A2052828300288FF5 /* Controller */,
+			);
+			path = VideoSelector;
+			sourceTree = "<group>";
+		};
+		9AC1AD9A2052828300288FF5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9AC1AD9B205285C500288FF5 /* RWVideoListViewController.h */,
+				9AC1AD9C205285C500288FF5 /* RWVideoListViewController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9AC1AD9E2052865700288FF5 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		9AC1ADA220528D5E00288FF5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9AC1ADA320528D7600288FF5 /* RWVideoTableView.h */,
+				9AC1ADA420528D7600288FF5 /* RWVideoTableView.m */,
+				9AC1ADA620528E2400288FF5 /* RWVideoListViewCell.h */,
+				9AC1ADA720528E2400288FF5 /* RWVideoListViewCell.m */,
+				9AC1ADA820528E2400288FF5 /* RWVideoListViewCell.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		9AC4F9F5204400860074D134 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
@@ -426,6 +475,7 @@
 		9AC4FA02204411DF0074D134 /* File */ = {
 			isa = PBXGroup;
 			children = (
+				9AC1AD992052828300288FF5 /* VideoSelector */,
 				9AC4FA03204411DF0074D134 /* ImageSelector */,
 			);
 			path = File;
@@ -619,6 +669,7 @@
 				9A63CC49200F2934007C31C4 /* Assets.xcassets in Resources */,
 				9A63CC47200F2934007C31C4 /* Main.storyboard in Resources */,
 				9A63CC8B200F3641007C31C4 /* WaitViewController.xib in Resources */,
+				9AC1ADAA20528E2400288FF5 /* RWVideoListViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -644,6 +695,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A63CC44200F2934007C31C4 /* ViewController.m in Sources */,
+				9AC1ADA920528E2400288FF5 /* RWVideoListViewCell.m in Sources */,
 				9A3FEAD420468DB6008CBBBB /* RWBaseViewController.m in Sources */,
 				9A63CC4F200F2934007C31C4 /* main.m in Sources */,
 				9A63CC8F200F4621007C31C4 /* RWUserCenter.m in Sources */,
@@ -660,6 +712,7 @@
 				9A593D5F2047A6D700F09F73 /* RWPhotoModel.m in Sources */,
 				9AD1DD07204A3F7000C51B8F /* RWStream.m in Sources */,
 				9A63CC41200F2934007C31C4 /* AppDelegate.m in Sources */,
+				9AC1AD9D205285C500288FF5 /* RWVideoListViewController.m in Sources */,
 				9A63CC86200F3523007C31C4 /* RWSession.m in Sources */,
 				9AD1DD10204AA36200C51B8F /* RWTransferCenter.m in Sources */,
 				9A3FEACF20468097008CBBBB /* RWAlbumListViewController.m in Sources */,
@@ -673,6 +726,7 @@
 				9A593D622047B07500F09F73 /* RWPhotoCollectView.m in Sources */,
 				9AD1DD0A204A44DC00C51B8F /* RWOutputStream.m in Sources */,
 				9A593D592047979F00F09F73 /* RWImageSelectorViewModel.m in Sources */,
+				9AC1ADA520528D7600288FF5 /* RWVideoTableView.m in Sources */,
 				9A63CC95200F594F007C31C4 /* TransferListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -20,4 +20,8 @@
 
 - (PHImageRequestID)getPhotoDataWithAsset:(id)asset completion:(void (^)(NSData *imageData, NSString *dataUTI, NSDictionary * info))completion;
 
+- (PHImageRequestID)getVideoInfoWithAsset:(id)asset completion:(void (^)(long long size, UIImage *image))completion;
+
+- (PHImageRequestID)getVideoDataWithAsset:(id)asset completion:(void (^)(NSData *data))completion;
+
 @end

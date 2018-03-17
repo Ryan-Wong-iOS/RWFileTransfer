@@ -8,6 +8,7 @@
 
 #import "TransferListViewController.h"
 #import "RWAlbumListViewController.h"
+#import "RWVideoListViewController.h"
 #import "RWTransferViewModel.h"
 #import "RWTransferCenter.h"
 
@@ -52,7 +53,8 @@
 - (void)chooseAction {
     RWAlbumListViewModel *viewModel = [[RWAlbumListViewModel alloc] init];
     viewModel.title = @"选择相册";
-    RWAlbumListViewController *vc = [[RWAlbumListViewController alloc] initWithViewModel:viewModel];
+//    RWAlbumListViewController *vc = [[RWAlbumListViewController alloc] initWithViewModel:viewModel];
+    RWVideoListViewController *vc = [[RWVideoListViewController alloc] initWithViewModel:viewModel];
     [self.navigationController pushViewController:vc animated:YES];
 }
 
@@ -163,7 +165,7 @@
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         NSString *pictureDirectory = [RWFileManager picturesDirectory];
-        NSString *fileName = [[name stringByReplacingOccurrencesOfString:@"." withString:@"_"] stringByAppendingString:@".png"];
+        NSString *fileName = [[name stringByReplacingOccurrencesOfString:@"." withString:@"_"] stringByAppendingString:@".mp4"];
         NSString *targetPath = [NSString stringWithFormat:@"%@/%@", pictureDirectory, fileName];
         [weakSelf moveItemFrom:filePath to:targetPath];
     });

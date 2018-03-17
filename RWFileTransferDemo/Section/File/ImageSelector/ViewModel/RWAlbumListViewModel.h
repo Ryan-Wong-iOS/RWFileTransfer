@@ -9,12 +9,17 @@
 #import <Foundation/Foundation.h>
 #import "RWBaseViewModel.h"
 
+typedef NS_ENUM(NSUInteger, RWAlbumListContentType) {
+    RWAlbumListContentTypePhoto,
+    RWAlbumListContentTypeVideo,
+};
+
 @class RWAlbumViewModel;
 @interface RWAlbumListViewModel : RWBaseViewModel
 
 @property (strong, nonatomic, readonly)NSArray <RWAlbumViewModel *> *albums;
 
-- (void)loadAlbumData:(void (^)(id))success failure:(void (^)(NSError *))failure;
+- (void)loadAlbumDataContentType:(RWAlbumListContentType)contentType success:(void (^)(id))success failure:(void (^)(NSError *))failure;
 
 - (void)submitAllTransferDatas;
 

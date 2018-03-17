@@ -25,6 +25,8 @@
 
 @property (assign, nonatomic, readwrite)NSInteger selectedCount;
 
+@property (assign, nonatomic, readwrite)NSInteger fileType;
+
 @end
 
 @implementation RWAlbumViewModel
@@ -36,6 +38,7 @@
         self.title = model.title;
         self.result = model.result;
         self.count = model.count;
+        self.fileType = model.fileType;
         self.allAssets = [self readAllAssets];
         self.selectedAssets = [NSMutableArray array];
     }
@@ -50,7 +53,7 @@
     
     for (PHAsset *asset in array) {
         RWPhotoModel *photoModel = [[RWPhotoModel alloc] init];
-        photoModel.name = [NSString stringWithFormat:@"%zd", (NSInteger)[[NSDate date] timeIntervalSince1970]];
+        photoModel.name = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
         photoModel.asset = asset;
         RWimageViewModel *imageViewModel = [[RWimageViewModel alloc] initWithModel:photoModel];
         [photos addObject:imageViewModel];

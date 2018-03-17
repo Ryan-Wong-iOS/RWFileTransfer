@@ -1,30 +1,26 @@
 //
-//  RWAlbumListViewController.m
+//  RWVideoListViewController.m
 //  RWFileTransferDemo
 //
-//  Created by RyanWong on 2018/2/28.
+//  Created by RyanWong on 2018/3/9.
 //  Copyright © 2018年 RyanWong. All rights reserved.
 //
 
-#import "RWAlbumListViewController.h"
-#import "RWAlbumTableView.h"
+#import "RWVideoListViewController.h"
+#import "RWAlbumListViewModel.h"
+#import "RWVideoTableView.h"
 
-@interface RWAlbumListViewController ()
+@interface RWVideoListViewController ()
+
+@property (strong, nonatomic)RWVideoTableView *tv;
 
 @property (strong, nonatomic)RWAlbumListViewModel *viewModel;
-
-@property (strong, nonatomic)RWAlbumTableView *albumTv;
 
 @property (strong, nonatomic)UIButton *sendBtn;
 
 @end
 
-@implementation RWAlbumListViewController
-
-- (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
-    [_albumTv reloadData];
-}
+@implementation RWVideoListViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -33,15 +29,17 @@
     
     self.title = self.viewModel.title;
     
-    [self.view addSubview:self.albumTv];
+    [self.view addSubview:self.tv];
     
     [self.view addSubview:self.sendBtn];
     
-    [self.viewModel loadAlbumDataContentType:RWAlbumListContentTypePhoto success:^(id responseObject) {
-        [self.albumTv reloadWithData:self.viewModel.albums];
+    [self.viewModel loadAlbumDataContentType:RWAlbumListContentTypeVideo success:^(id responseObject) {
+        NSLog(@"%@",self.viewModel.albums);
+        [self.tv reloadWithData:self.viewModel.albums];
     } failure:^(NSError *error) {
         
     }];
+    
 }
 
 - (void)sendAction {
@@ -54,11 +52,11 @@
     // Dispose of any resources that can be recreated.
 }
 
--(RWAlbumTableView *)albumTv {
-    if (!_albumTv) {
-        _albumTv = [[RWAlbumTableView alloc] initWithViewController:self frame:self.view.frame];
+-(RWVideoTableView *)tv {
+    if (!_tv) {
+        _tv = [[RWVideoTableView alloc] initWithFrame:self.view.frame];
     }
-    return _albumTv;
+    return _tv;
 }
 
 -(UIButton *)sendBtn {

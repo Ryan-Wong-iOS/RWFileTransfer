@@ -10,6 +10,7 @@
 #import "SearchViewController.h"
 #import "WaitViewController.h"
 #import "RWAlbumListViewController.h"
+#import "RWVideoListViewController.h"
 #import "RWAlbumListViewModel.h"
 #import "RWBrowser.h"
 
@@ -42,8 +43,10 @@
 }
 - (IBAction)checkAction:(id)sender {
     RWAlbumListViewModel *viewModel = [[RWAlbumListViewModel alloc] init];
-    viewModel.title = @"选择相册";
-    RWAlbumListViewController *vc = [[RWAlbumListViewController alloc] initWithViewModel:viewModel];
+//    viewModel.title = @"选择相册";
+//    RWAlbumListViewController *vc = [[RWAlbumListViewController alloc] initWithViewModel:viewModel];
+    viewModel.title = @"选择视频";
+    RWVideoListViewController *vc = [[RWVideoListViewController alloc] initWithViewModel:viewModel];
     [self.navigationController pushViewController:vc animated:YES];
 }
 

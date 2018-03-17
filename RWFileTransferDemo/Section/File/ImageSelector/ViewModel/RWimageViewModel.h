@@ -27,4 +27,6 @@
 
 - (void)loadImageDataWithPhotoWidth:(CGFloat)photoWidth success:(void(^)(id))success failure:(void (^)(NSError *))failure;
 
+- (void)loadVideoDataSuccess:(void(^)(long long size, UIImage *image))success failure:(void (^)(NSError *))failure;
+
 @end

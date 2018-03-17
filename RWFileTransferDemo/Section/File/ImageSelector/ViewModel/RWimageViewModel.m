@@ -41,4 +41,11 @@
     } progressHandler:nil networkAccessAllowed:NO];
 }
 
+- (void)loadVideoDataSuccess:(void(^)(long long size, UIImage *image))success failure:(void (^)(NSError *))failure {
+    
+    [[RWImageLoad shareLoad] getVideoInfoWithAsset:_asset completion:^(long long size, UIImage *image) {
+        !success?:success(size, image);
+    }];
+}
+
 @end
