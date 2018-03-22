@@ -22,12 +22,17 @@
     [super viewDidDisappear:animated];
     
     [[RWBrowser shareInstance] stopWait];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
     [[RWUserCenter center].session.session disconnect];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connect) name:kRWSessionStateConnectedNotification object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notConnect) name:kRWSessionStateNotConnectedNotification object:nil];
 }
 
 - (void)viewDidLoad {
@@ -39,14 +44,20 @@
     [[RWBrowser shareInstance] setConfigurationWithName:deviceName Identifier:@"rw"];
     
     [[RWBrowser shareInstance] startWaitForConnect];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(connect) name:kRWSessionStateConnectedNotification object:nil];
 }
 
 - (void)connect {
     dispatch_async(dispatch_get_main_queue(), ^{
-        TransferListViewController *vc = [[TransferListViewController alloc] init];
+        RWTransferListViewModel *vm = [[RWTransferListViewModel alloc] init];
+        vm.title = @"传输圈";
+        TransferListViewController *vc = [[TransferListViewController alloc] initWithViewModel:vm];
         [self.navigationController pushViewController:vc animated:YES];
+    });
+}
+
+- (void)notConnect {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
     });
 }
 

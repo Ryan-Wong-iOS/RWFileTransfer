@@ -10,4 +10,15 @@
 #import <Photos/Photos.h>
 @implementation RWPhotoModel
 
+- (instancetype)initWithDictionary:(NSDictionary *)dict {
+    self = [super init];
+    if (self) {
+        _name = dict[@"name"];
+        _size = [dict[@"size"] longLongValue];
+        _fileType = dict[@"fileType"];
+        _pathExtension = dict[@"pathExtension"];
+    }
+    return self;
+}
+
 @end

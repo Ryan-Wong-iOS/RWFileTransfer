@@ -36,6 +36,8 @@
 		9A63CC8F200F4621007C31C4 /* RWUserCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC8E200F4621007C31C4 /* RWUserCenter.m */; };
 		9A63CC92200F4762007C31C4 /* RWBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC90200F4762007C31C4 /* RWBrowser.m */; };
 		9A63CC95200F594F007C31C4 /* TransferListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A63CC94200F594F007C31C4 /* TransferListViewController.m */; };
+		9ABD5D68205CE9E700E47538 /* RWTransferListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD5D67205CE9E600E47538 /* RWTransferListViewModel.m */; };
+		9ABD5D6E205D19A900E47538 /* RWDataTransfer.m in Sources */ = {isa = PBXBuildFile; fileRef = 9ABD5D6D205D19A800E47538 /* RWDataTransfer.m */; };
 		9AC1AD9820526E9B00288FF5 /* RWFileManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1AD9620526E9B00288FF5 /* RWFileManager.m */; };
 		9AC1AD9D205285C500288FF5 /* RWVideoListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1AD9C205285C500288FF5 /* RWVideoListViewController.m */; };
 		9AC1ADA520528D7600288FF5 /* RWVideoTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9AC1ADA420528D7600288FF5 /* RWVideoTableView.m */; };
@@ -126,6 +128,12 @@
 		9A63CC91200F4762007C31C4 /* RWBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWBrowser.h; sourceTree = "<group>"; };
 		9A63CC93200F594F007C31C4 /* TransferListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TransferListViewController.h; sourceTree = "<group>"; };
 		9A63CC94200F594F007C31C4 /* TransferListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TransferListViewController.m; sourceTree = "<group>"; };
+		9ABD5D66205CE9E600E47538 /* RWTransferListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWTransferListViewModel.h; sourceTree = "<group>"; };
+		9ABD5D67205CE9E600E47538 /* RWTransferListViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWTransferListViewModel.m; sourceTree = "<group>"; };
+		9ABD5D69205CFB4900E47538 /* RWHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWHeader.pch; sourceTree = "<group>"; };
+		9ABD5D6A205D0E3000E47538 /* RWStringConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWStringConfig.h; sourceTree = "<group>"; };
+		9ABD5D6C205D19A800E47538 /* RWDataTransfer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWDataTransfer.h; sourceTree = "<group>"; };
+		9ABD5D6D205D19A800E47538 /* RWDataTransfer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWDataTransfer.m; sourceTree = "<group>"; };
 		9AC1AD9620526E9B00288FF5 /* RWFileManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RWFileManager.m; sourceTree = "<group>"; };
 		9AC1AD9720526E9B00288FF5 /* RWFileManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWFileManager.h; sourceTree = "<group>"; };
 		9AC1AD9B205285C500288FF5 /* RWVideoListViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWVideoListViewController.h; sourceTree = "<group>"; };
@@ -229,6 +237,7 @@
 			isa = PBXGroup;
 			children = (
 				9A3FEADF2046B1DC008CBBBB /* RWConfig.h */,
+				9ABD5D6A205D0E3000E47538 /* RWStringConfig.h */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -240,6 +249,8 @@
 				9A5F9E6B204932C900C7BF44 /* RWTransferViewModel.m */,
 				9AD1DD0E204AA36200C51B8F /* RWTransferCenter.h */,
 				9AD1DD0F204AA36200C51B8F /* RWTransferCenter.m */,
+				9ABD5D66205CE9E600E47538 /* RWTransferListViewModel.h */,
+				9ABD5D67205CE9E600E47538 /* RWTransferListViewModel.m */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -282,6 +293,7 @@
 				9A63CC4A200F2934007C31C4 /* LaunchScreen.storyboard */,
 				9A63CC4D200F2934007C31C4 /* Info.plist */,
 				9A63CC4E200F2934007C31C4 /* main.m */,
+				9ABD5D69205CFB4900E47538 /* RWHeader.pch */,
 			);
 			path = RWFileTransferDemo;
 			sourceTree = "<group>";
@@ -406,6 +418,15 @@
 			path = RWUserCenter;
 			sourceTree = "<group>";
 		};
+		9ABD5D6B205D199700E47538 /* RWDataTransfer */ = {
+			isa = PBXGroup;
+			children = (
+				9ABD5D6C205D19A800E47538 /* RWDataTransfer.h */,
+				9ABD5D6D205D19A800E47538 /* RWDataTransfer.m */,
+			);
+			path = RWDataTransfer;
+			sourceTree = "<group>";
+		};
 		9AC1AD992052828300288FF5 /* VideoSelector */ = {
 			isa = PBXGroup;
 			children = (
@@ -447,6 +468,7 @@
 		9AC4F9F5204400860074D134 /* Tool */ = {
 			isa = PBXGroup;
 			children = (
+				9ABD5D6B205D199700E47538 /* RWDataTransfer */,
 				9A3502CF205139F000F001E7 /* RWFileManager */,
 				9A3502CB2051339200F001E7 /* RWFileHandle */,
 				9AC4F9F6204401070074D134 /* RWImageLoad */,
@@ -706,12 +728,14 @@
 				9A3FEADC20469852008CBBBB /* RWAlbumListViewCell.m in Sources */,
 				9AC1AD9820526E9B00288FF5 /* RWFileManager.m in Sources */,
 				9AC4F9F9204401160074D134 /* RWImageLoad.m in Sources */,
+				9ABD5D68205CE9E700E47538 /* RWTransferListViewModel.m in Sources */,
 				9A63CC8A200F3641007C31C4 /* WaitViewController.m in Sources */,
 				9A593D662047B0CB00F09F73 /* RWPhotoViewCell.m in Sources */,
 				9A63CC7B200F2ABB007C31C4 /* SearchViewController.m in Sources */,
 				9A593D5F2047A6D700F09F73 /* RWPhotoModel.m in Sources */,
 				9AD1DD07204A3F7000C51B8F /* RWStream.m in Sources */,
 				9A63CC41200F2934007C31C4 /* AppDelegate.m in Sources */,
+				9ABD5D6E205D19A900E47538 /* RWDataTransfer.m in Sources */,
 				9AC1AD9D205285C500288FF5 /* RWVideoListViewController.m in Sources */,
 				9A63CC86200F3523007C31C4 /* RWSession.m in Sources */,
 				9AD1DD10204AA36200C51B8F /* RWTransferCenter.m in Sources */,
@@ -893,6 +917,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CD49CVY74D;
 				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RWFileTransferDemo/RWHeader.pch";
 				INFOPLIST_FILE = RWFileTransferDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -909,6 +935,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = CD49CVY74D;
 				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/RWFileTransferDemo/RWHeader.pch";
 				INFOPLIST_FILE = RWFileTransferDemo/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

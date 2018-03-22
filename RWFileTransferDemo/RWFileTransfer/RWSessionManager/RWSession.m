@@ -36,28 +36,41 @@
     NSError *error;
     NSOutputStream *outputStream = [self.session startStreamWithName:name toPeer:peer error:&error];
     if (error) {
-        NSLog(@"error : %@", [error userInfo].description);
+        RWError(@"%@", [error userInfo].description);
     }
     return outputStream;
+}
+
+- (BOOL)sendData:(NSData *)data toPeers:(NSArray<MCPeerID *> *)peers {
+    NSError *error;
+    BOOL result = [self.session sendData:data toPeers:peers withMode:MCSessionSendDataReliable error:&error];
+    if (error) {
+        RWError(@"%@", [error userInfo].description);
+    }
+    return result;
 }
 
 #pragma mark - MCSession Delegate
 -(void)session:(MCSession *)session peer:(MCPeerID *)peerID didChangeState:(MCSessionState)state {
     if (state == MCSessionStateConnected) {
-        NSLog(@"与%@连接上",peerID.displayName);
+        RWStatus(@"与%@连接上",peerID.displayName);
         self.session = session;
         
         [[NSNotificationCenter defaultCenter] postNotificationName:kRWSessionStateConnectedNotification object:nil];
     } else if (state == MCSessionStateConnecting) {
-        NSLog(@"与%@连接中",peerID.displayName);
+        RWStatus(@"与%@连接中",peerID.displayName);
     } else if (state == MCSessionStateNotConnected) {
-        NSLog(@"与%@连接断开",peerID.displayName);
+        RWStatus(@"与%@连接断开",peerID.displayName);
         self.session = nil;
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:kRWSessionStateNotConnectedNotification object:nil];
     }
 }
 
 -(void)session:(MCSession *)session didReceiveData:(NSData *)data fromPeer:(MCPeerID *)peerID {
-    
+    if (_delegate && [_delegate respondsToSelector:@selector(session:didReceiveData:)]) {
+        [_delegate session:self didReceiveData:data];
+    }
 }
 
 -(void)session:(MCSession *)session didReceiveStream:(NSInputStream *)stream withName:(NSString *)streamName fromPeer:(MCPeerID *)peerID {

@@ -1,0 +1,18 @@
+//
+//  RWHeader.pch
+//  RWFileTransferDemo
+//
+//  Created by RyanWong on 2018/3/17.
+//  Copyright © 2018年 RyanWong. All rights reserved.
+//
+
+#ifndef RWHeader_pch
+#define RWHeader_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#import "RWConfig.h"
+#import "RWStringConfig.h"
+
+#endif /* RWHeader_pch */

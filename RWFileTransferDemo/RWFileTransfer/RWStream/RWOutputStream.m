@@ -49,7 +49,7 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
         return [self performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:YES];
     }
     
-    NSLog(@"Start");
+    RWStatus(@"Start");
     self.streamThread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
     [self.streamThread start];
 }
@@ -58,11 +58,11 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
     @autoreleasepool {
         [self.stream open];
         
-        NSLog(@"Loop");
+        RWStatus(@"Loop");
         
         while (self.readyForSend && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
         
-        NSLog(@"Done");
+        RWStatus(@"Done");
     }
 }
 
@@ -75,7 +75,7 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
 {
     self.readyForSend = NO;
     [self.stream close];
-    NSLog(@"Stop");
+    RWStatus(@"Stop");
 }
 
 - (void)streamWithAsset:(id)asset {
@@ -106,8 +106,8 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
         (void)memcpy(buf, readBytes, len);
         len = [self.stream writeData:(const uint8_t *)buf maxLength:(UInt32)len];
         _sendSize += len;
-        NSLog(@"Sending : %u", (unsigned int)len);
-        NSLog(@"Sending progress : %u / %u", (unsigned int)_sendSize, (unsigned int)_totalSize);
+        RWLog(@"Sending : %u", (unsigned int)len);
+        RWLog(@"Sending progress : %u / %u", (unsigned int)_sendSize, (unsigned int)_totalSize);
     }
 }
 
@@ -115,14 +115,13 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
 - (void)rwStream:(RWStream *)stream handleEvent:(RWStreamEvent)event {
     switch (event) {
         case RWStreamEventHasSpace:{
-            NSLog(@"Sending");
-            
+            RWStatus(@"Sending");
             [self sendDataChunk];
             break;
         }
             
         case RWStreamEventEnd:{
-            NSLog(@"Send End");
+            RWStatus(@"Send End");
             [self stop];
             if (_delegate && [_delegate respondsToSelector:@selector(outputStream:transferEndWithStreamName:)]) {
                 [_delegate outputStream:self transferEndWithStreamName:_streamName];
@@ -131,7 +130,7 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
         }
             
         case RWStreamEventError:{
-            NSLog(@"Send Error");
+            RWStatus(@"Send Error");
             [self stop];
             if (_delegate && [_delegate respondsToSelector:@selector(outputStream:transferErrorWithStreamName:)]) {
                 [_delegate outputStream:self transferErrorWithStreamName:_streamName];

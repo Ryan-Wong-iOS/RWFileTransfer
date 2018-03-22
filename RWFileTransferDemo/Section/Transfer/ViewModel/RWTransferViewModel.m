@@ -7,6 +7,8 @@
 //
 
 #import "RWTransferViewModel.h"
+#import "RWDataTransfer.h"
+#import "RWImageLoad.h"
 
 static NSString *const RWTransferStatusReadyText = @"初始化";
 static NSString *const RWTransferStatusPrepareText = @"准备中";
@@ -27,7 +29,9 @@ static NSString *const RWTransferStatusErrorText = @"错误";
 
 @property (copy, nonatomic, readwrite)NSString *statusText;
 
-@property (copy, nonatomic, readwrite)NSString *timestampText;
+@property (copy, nonatomic, readwrite)NSString *fileType;
+
+@property (copy, nonatomic, readwrite)NSString *pathExtension;
 
 @end
 
@@ -45,8 +49,41 @@ static NSString *const RWTransferStatusErrorText = @"错误";
         _statusText = RWTransferStatusReadyText;
         _source = RWTransferSourceNone;
         _timestampText = [self getDefaultTimestamp];
+        _fileType = model.fileType;
+        _pathExtension = model.pathExtension;
     }
     return self;
+}
+
+- (NSData *)getTaskData {
+    
+    NSLock *lock = [[NSLock alloc] init];
+    __block NSInteger tag = 0;
+    while(true) {
+        [lock lock];
+        if (tag != 0) {
+            break;
+        }
+        [[RWImageLoad shareLoad] getVideoInfoWithAsset:_asset completion:^(long long size, UIImage *image) {
+            _size = size;
+            tag = 1;
+            [lock unlock];
+        }];
+    }
+    
+    NSDictionary *dict = @{
+                           @"dataType":@(RWTransferDataTypeSendTaskInfo),
+                           @"data":@{
+                               @"name":_name,
+                               @"size":@(_size),
+                               @"timestamp":_timestampText,
+                               @"fileType":_fileType,
+                               @"pathExtension":_pathExtension
+                               }
+                           };
+    
+    NSData *data = [RWDataTransfer dictionaryToData:dict];
+    return data;
 }
 
 - (void)setStatus:(RWTransferStatus)status {

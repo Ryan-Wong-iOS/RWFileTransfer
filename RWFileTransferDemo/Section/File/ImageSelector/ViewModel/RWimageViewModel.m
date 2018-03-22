@@ -19,6 +19,10 @@
 
 @property (assign, nonatomic, readwrite)long long size;
 
+@property (copy, nonatomic, readwrite)NSString *fileType;
+
+@property (copy, nonatomic, readwrite)NSString *pathExtension;
+
 @end
 
 @implementation RWimageViewModel
@@ -30,6 +34,8 @@
         _name = model.name;
         _asset = model.asset;
         _size = model.size;
+        _fileType = model.fileType;
+        _pathExtension = model.pathExtension;
     }
     return self;
 }

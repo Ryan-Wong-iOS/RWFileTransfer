@@ -10,6 +10,7 @@
 #import <MultipeerConnectivity/MCSession.h>
 
 static NSString *const kRWSessionStateConnectedNotification = @"RWSessionStateConnectedNotification";
+static NSString *const kRWSessionStateNotConnectedNotification = @"RWSessionStateNotConnectedNotification";
 
 @class RWSession;
 @protocol RWSessionDelegate <NSObject>
@@ -32,5 +33,7 @@ static NSString *const kRWSessionStateConnectedNotification = @"RWSessionStateCo
 - (NSArray *)connectedPeers;
 
 - (NSOutputStream *)outputStreamForPeer:(MCPeerID *)peer With:(NSString *)name;
+
+- (BOOL)sendData:(NSData *)data toPeers:(NSArray<MCPeerID *> *)peers;
 
 @end

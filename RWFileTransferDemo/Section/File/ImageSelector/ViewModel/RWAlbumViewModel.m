@@ -25,7 +25,7 @@
 
 @property (assign, nonatomic, readwrite)NSInteger selectedCount;
 
-@property (assign, nonatomic, readwrite)NSInteger fileType;
+@property (assign, nonatomic, readwrite)NSString *fileType;
 
 @end
 
@@ -34,13 +34,13 @@
 - (instancetype)initWithModel:(RWAlbumModel *)model {
     self = [super init];
     if (self) {
-        self.albumModel = model;
-        self.title = model.title;
-        self.result = model.result;
-        self.count = model.count;
-        self.fileType = model.fileType;
-        self.allAssets = [self readAllAssets];
-        self.selectedAssets = [NSMutableArray array];
+        _albumModel = model;
+        _title = model.title;
+        _result = model.result;
+        _count = model.count;
+        _fileType = model.fileType;
+        _allAssets = [self readAllAssets];
+        _selectedAssets = [NSMutableArray array];
     }
     return self;
 }
@@ -53,12 +53,28 @@
     
     for (PHAsset *asset in array) {
         RWPhotoModel *photoModel = [[RWPhotoModel alloc] init];
-        photoModel.name = [NSString stringWithFormat:@"%f", [[NSDate date] timeIntervalSince1970]];
+        photoModel.name = [self getFileNameWith:asset];
         photoModel.asset = asset;
+        photoModel.fileType = _fileType;
+        photoModel.pathExtension = [photoModel.name pathExtension];
         RWimageViewModel *imageViewModel = [[RWimageViewModel alloc] initWithModel:photoModel];
         [photos addObject:imageViewModel];
     }
     return photos;
+}
+
+- (NSString *)getFileNameWith:(PHAsset *)asset {
+    NSString *name = [NSString stringWithFormat:@"%ld", (long)([[NSDate date] timeIntervalSince1970] * 10000)];
+    name = [name stringByReplacingOccurrencesOfString:@"." withString:@"_"];
+    NSString *pathExtension = [self getPathExtensionWith:asset];
+    name = [NSString stringWithFormat:@"%@.%@", name, pathExtension];
+    return name;
+}
+
+- (NSString *)getPathExtensionWith:(PHAsset *)asset {
+    NSString *filename = [asset valueForKey:@"filename"];
+    NSString *pathExtension = [filename pathExtension];
+    return  pathExtension;
 }
 
 - (void)selectOne:(NSInteger)index {

@@ -17,4 +17,10 @@
 
 @property (assign, nonatomic)long long size;
 
+@property (copy, nonatomic)NSString *fileType;
+
+@property (copy, nonatomic)NSString *pathExtension;
+
+- (instancetype)initWithDictionary:(NSDictionary *)dict;
+
 @end

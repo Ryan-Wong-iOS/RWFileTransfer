@@ -22,6 +22,8 @@ UInt32 const kRWStreamReadMaxLength = 4096;
 
 @property (strong, nonatomic)NSFileHandle *fileHandle;
 
+@property (assign, nonatomic)long long progress;
+
 @end
 
 @implementation RWInputStream
@@ -39,6 +41,8 @@ UInt32 const kRWStreamReadMaxLength = 4096;
     if (![[NSThread currentThread] isMainThread]) {
         return [self performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:YES];
     }
+    
+    _progress = 0;
     
     self.streamThread = [[NSThread alloc] initWithTarget:self selector:@selector(run) object:nil];
     [self.streamThread start];
@@ -60,7 +64,7 @@ UInt32 const kRWStreamReadMaxLength = 4096;
 - (void)stopThread
 {
     [self.stream close];
-    NSLog(@"Stop");
+    RWStatus(@"Stop");
 }
 
 #pragma mark - RWStreamDelegate
@@ -73,13 +77,18 @@ UInt32 const kRWStreamReadMaxLength = 4096;
                 NSData *data = [NSData dataWithBytes:(const void *)bytes length:length];
                 [self.fileHandle seekToEndOfFile];
                 [self.fileHandle writeData:data];
-                NSLog(@"Transfering %d", (unsigned int)length);
+                _progress += length;
+                
+                if (_delegate && [_delegate respondsToSelector:@selector(inputStream:streamName:progress:)]) {
+                    [_delegate inputStream:self streamName:_streamName progress:_progress];
+                }
+                RWLog(@"Transfering %d / %lld", (unsigned int)length, _progress);
             }
             break;
         }
             
         case RWStreamEventEnd:
-            NSLog(@"Transfer End");
+            RWStatus(@"Transfer End");
             self.appendData = nil;
             [self.fileHandle  synchronizeFile];
             [self.fileHandle  closeFile];
@@ -89,7 +98,7 @@ UInt32 const kRWStreamReadMaxLength = 4096;
             break;
             
         case RWStreamEventError:
-            NSLog(@"Transfer Error");
+            RWStatus(@"Transfer Error");
             if (_delegate && [_delegate respondsToSelector:@selector(inputStream:transferErrorWithStreamName:)]) {
                 [_delegate inputStream:self transferErrorWithStreamName:_streamName];
             }

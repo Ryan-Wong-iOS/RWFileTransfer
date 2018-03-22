@@ -11,9 +11,9 @@
 @class RWPhotoModel,RWTransferViewModel;
 @interface RWTransferCenter : NSObject
 
-@property (strong, nonatomic)NSMutableArray *readyTaskDatas;
+@property (strong, nonatomic)NSMutableArray <RWTransferViewModel *>*readyTaskDatas;
 
-@property (strong, nonatomic)NSMutableArray *allTaskDatas;
+@property (strong, nonatomic)NSMutableArray <RWTransferViewModel *>*allTaskDatas;
 
 + (instancetype)center;
 
@@ -21,6 +21,10 @@
 
 - (RWTransferViewModel *)currentReadyTask;
 
+- (RWTransferViewModel *)getTaskWithTimestampText:(NSString *)timestampText;
+
 - (void)nextReadyTask;
+
+- (void)createReceiveTask:(RWPhotoModel *)model withTimestampText:(NSString *)timestampText;
 
 @end

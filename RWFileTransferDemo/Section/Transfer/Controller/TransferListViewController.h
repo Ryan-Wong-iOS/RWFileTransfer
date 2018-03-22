@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@interface TransferListViewController : UITableViewController
+#import "RWBaseViewController.h"
+#import "RWTransferListViewModel.h"
+@interface TransferListViewController : RWBaseViewController
 
 @end

@@ -34,4 +34,17 @@
 #define LanguageWRV(key, value1) (NSString *)[Language(key) stringByReplacingOccurrencesOfString:@"[P0]" withString:value1]
 #define LanguageWRVS(key, value1, value2) (NSString *)[[Language(key) stringByReplacingOccurrencesOfString:@"[P0]" withString:value1] stringByReplacingOccurrencesOfString:@"[P1]" withString:value2]
 
+/*******************************************************************
+ * -- 日志打印
+ *******************************************************************/
+#ifdef DEBUG
+# define RWLog(fmt, ...) NSLog((@"【日志】-- 方法:%s 行号:%d 日志内容:" fmt),  __FUNCTION__, __LINE__, ##__VA_ARGS__);
+# define RWStatus(fmt, ...) NSLog((@"【状态】-- 日志内容:" fmt), ##__VA_ARGS__);
+# define RWError(fmt, ...) NSLog((@"【错误】-- 方法:%s 行号:%d 日志内容:" fmt),  __FUNCTION__, __LINE__, ##__VA_ARGS__);
+#else
+# define RWLog(...);
+# define RWStatus(...);
+# define RWError(...);
+#endif
+
 #endif /* RWConfig_h */

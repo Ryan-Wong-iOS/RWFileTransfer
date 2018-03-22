@@ -22,7 +22,7 @@
 
 @interface TransferListViewController () <RWSessionDelegate, RWOutputStreamDelegate, RWInputStreamDelegate>
 
-@property (strong, nonatomic)RWTransferCenter *center;
+@property (strong, nonatomic)RWTransferListViewModel *viewModel;
 
 @property (strong, nonatomic)RWSession *session;
 @property (strong, nonatomic)RWOutputStream *outputStream;
@@ -35,19 +35,29 @@
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     
-    NSLog(@"任务准备：%@", self.center.readyTaskDatas);
-    if (self.center.readyTaskDatas.count > 0) {
-        [self sendTest];
-    }
+    [self sendTaskInfo];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    _viewModel = (RWTransferListViewModel *)self.baseViewModel;
+    [_viewModel setTarget:self];
+    
+    self.title = _viewModel.title;
+    
+    self.session.delegate = self;
+    
     UIBarButtonItem *chooseBtn = [[UIBarButtonItem alloc] initWithTitle:@"选择文件" style:UIBarButtonItemStylePlain target:self action:@selector(chooseAction)];
     self.navigationItem.rightBarButtonItem = chooseBtn;
     
-    self.session.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(notConnect) name:kRWSessionStateNotConnectedNotification object:nil];
+}
+
+- (void)notConnect {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.navigationController popViewControllerAnimated:YES];
+    });
 }
 
 - (void)chooseAction {
@@ -58,61 +68,27 @@
     [self.navigationController pushViewController:vc animated:YES];
 }
 
-- (void)sendTest {
-    if (self.center.readyTaskDatas.count <= 0) {
-        return;
-    }
-    RWTransferViewModel *viewModel = [self.center currentReadyTask];
-    NSLog(@"准备发送 %@", viewModel.timestampText);
-    NSArray *peers = [self.session connectedPeers];
-    
-    if (peers.count) {
-        RWOutputStream *outputStream = [[RWOutputStream alloc] initWithOutputStream:[self.session outputStreamForPeer:peers[0] With:viewModel.timestampText]];
-        outputStream.streamName = viewModel.timestampText;
-        outputStream.delegate = self;
-        [outputStream streamWithAsset:viewModel.asset];
-        [outputStream start];
-    }
+- (void)sendTaskInfo {
+    [_viewModel sendPeerTaskInfo];
 }
+
+//- (void)sendFile {
+//    [_viewModel createSendStreamWithTarget:self];
+//}
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
 
-#pragma mark - Table view data source
-
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return 0;
-}
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 0;
-}
-
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"tran" forIndexPath:indexPath];
-    
-    
-    return cell;
-}
-
 #pragma mark - RWSession Delegate
 
+-(void)session:(RWSession *)session didReceiveData:(NSData *)data {
+    [_viewModel handleReceiveData:data];
+}
+
 -(void)session:(RWSession *)session didReceiveStream:(NSInputStream *)stream WithName:(NSString *)streamName {
-    RWInputStream *inputStream = [[RWInputStream alloc] initWithInputStream:stream];
-    inputStream.streamName = streamName;
-    inputStream.delegate = self;
-    [inputStream start];
-}
-
--(RWSession *)session {
-    return [RWUserCenter center].session;
-}
-
--(RWTransferCenter *)center {
-    return [RWTransferCenter center];
+    [_viewModel createReceiveStreamWithStream:stream streamName:streamName];
 }
 
 #pragma mark - RWOutputStream Delegate
@@ -126,8 +102,8 @@
     outputStream = nil;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self.center nextReadyTask];
-        [self sendTest];
+        [_viewModel nextReadyTask];
+        [self sendTaskInfo];
     });
 }
 
@@ -136,19 +112,18 @@
     outputStream = nil;
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [self sendTest];
+//        [self sendFile];
     });
 }
 
 #pragma mark - RWInputStream Delegate
-- (void)inputStream:(RWInputStream *)inputStream progress:(long long)progress {
-    
+- (void)inputStream:(RWInputStream *)inputStream streamName:(NSString *)name progress:(long long)progress {
+    [_viewModel receiveTaskProgressWithStreamName:name progress:progress];
 }
 
 - (void)inputStream:(RWInputStream *)inputStream transferEndWithStreamName:(NSString *)name filePath:(NSString *)filePath {
-    NSLog(@"传输完成 得到临时文件路径 ： %@", filePath);
-    
-    [self handleTmpFile:filePath name:name];
+    [_viewModel handleTmpFile:filePath name:name];
+    [_viewModel receiveTaskFinishWithStreamName:name];
     
     [inputStream stop];
     inputStream.delegate = nil;
@@ -156,24 +131,21 @@
 }
 
 - (void)inputStream:(RWInputStream *)inputStream transferErrorWithStreamName:(NSString *)name {
+    [_viewModel receiveTaskErrorWithStreamName:name];
+    
     [inputStream stop];
     inputStream.delegate = nil;
     inputStream = nil;
 }
 
-- (void)handleTmpFile:(NSString *)filePath name:(NSString *)name {
-    __weak typeof(self) weakSelf = self;
-    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-        NSString *pictureDirectory = [RWFileManager picturesDirectory];
-        NSString *fileName = [[name stringByReplacingOccurrencesOfString:@"." withString:@"_"] stringByAppendingString:@".mp4"];
-        NSString *targetPath = [NSString stringWithFormat:@"%@/%@", pictureDirectory, fileName];
-        [weakSelf moveItemFrom:filePath to:targetPath];
-    });
+#pragma mark - Lazy load
+-(RWSession *)session {
+    return [RWUserCenter center].session;
 }
 
-- (void)moveItemFrom:(NSString *)filePath to:(NSString *)targetPath {
-    [RWFileHandle copyFileFromPath:filePath toPath:targetPath];
-    [RWFileManager deleteFileAtPath:filePath];
+-(void)dealloc {
+    RWStatus(@"传输圈销毁");
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 @end

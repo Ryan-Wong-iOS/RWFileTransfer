@@ -21,6 +21,10 @@
 
 @property (assign, nonatomic, readonly)long long size;
 
+@property (copy, nonatomic, readonly)NSString *fileType;
+
+@property (copy, nonatomic, readonly)NSString *pathExtension;
+
 @property (assign, nonatomic)BOOL selected;
 
 - (instancetype)initWithModel:(RWPhotoModel *)model;

@@ -35,6 +35,7 @@ static RWTransferCenter *_center = nil;
     }
     @synchronized(self) {
         [self.readyTaskDatas addObjectsFromArray:array];
+        [self.allTaskDatas addObjectsFromArray:array];
     }
 }
 
@@ -46,9 +47,32 @@ static RWTransferCenter *_center = nil;
     return viewModel;
 }
 
+- (RWTransferViewModel *)getTaskWithTimestampText:(NSString *)timestampText {
+    RWTransferViewModel *viewModel;
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"%K CONTAINS %@", @"timestampText", timestampText];
+    NSArray *array = [self.allTaskDatas filteredArrayUsingPredicate:pre];
+    if (array.count) {
+        viewModel = array[0];
+    }
+    return viewModel;
+}
+
 - (void)nextReadyTask {
     @synchronized(self) {
         [self.readyTaskDatas removeObjectAtIndex:0];
+    }
+}
+
+- (void)createReceiveTask:(RWPhotoModel *)model withTimestampText:(NSString *)timestampText{
+    RWTransferViewModel *viewModel = [[RWTransferViewModel alloc] initWithModel:model];
+    viewModel.source = RWTransferSourceOther;
+    viewModel.timestampText = timestampText;
+    [self addTaskToAllList:viewModel];
+}
+
+- (void)addTaskToAllList:(RWTransferViewModel *)taskModel {
+    @synchronized(self) {
+        [self.allTaskDatas addObject:taskModel];
     }
 }
 

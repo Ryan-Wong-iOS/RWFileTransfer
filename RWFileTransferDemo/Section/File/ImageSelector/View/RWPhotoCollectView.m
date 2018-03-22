@@ -10,7 +10,6 @@
 #import "RWPhotoViewCell.h"
 #import "RWAlbumViewModel.h"
 #import "RWimageViewModel.h"
-#import "RWConfig.h"
 #import <Photos/Photos.h>
 
 static CGFloat const margin = 3;

@@ -82,8 +82,12 @@
 }
 
 - (void)dealloc {
+    RWStatus(@"Stream 销毁");
     if (self.stream) {
         [self close];
+    }
+    if (self.delegate) {
+        self.delegate = nil;
     }
 }
 

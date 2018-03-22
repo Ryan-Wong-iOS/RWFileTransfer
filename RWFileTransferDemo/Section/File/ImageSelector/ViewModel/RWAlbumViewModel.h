@@ -24,7 +24,7 @@
 
 @property (assign, nonatomic, readonly)BOOL selected;
 
-@property (assign, nonatomic, readonly)NSInteger fileType;
+@property (assign, nonatomic, readonly)NSString *fileType;
 
 - (instancetype)initWithModel:(RWAlbumModel *)model;
 

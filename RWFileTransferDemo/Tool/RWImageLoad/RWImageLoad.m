@@ -7,7 +7,6 @@
 //
 
 #import "RWImageLoad.h"
-#import "RWConfig.h"
 #import "RWAlbumModel.h"
 
 static RWImageLoad *_instance = nil;
@@ -41,7 +40,7 @@ static RWImageLoad *_instance = nil;
             PHFetchResult<PHAsset *>  *fetchResult = [PHAsset fetchAssetsInAssetCollection:collection options:option];
             if (fetchResult.count > 0) {
                 RWAlbumModel *model = [self modelWithResult:fetchResult name:collection.localizedTitle];
-                model.fileType = 0;
+                model.fileType = kFileTypePicture;
                 [albums addObject:model];
             }
         }
@@ -53,9 +52,9 @@ static RWImageLoad *_instance = nil;
     if (fetchResult.count > 0) {
         RWAlbumModel *model = [self modelWithResult:fetchResult name:cameraRoll.localizedTitle];
         if (!contentVideo) {
-            model.fileType = 0;
+            model.fileType = kFileTypePicture;
         } else {
-            model.fileType = 1;
+            model.fileType = kFileTypeVideo;
         }
         [albums insertObject:model atIndex:0];
     }
