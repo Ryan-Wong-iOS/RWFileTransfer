@@ -63,6 +63,9 @@
             break;
             
         default:
+            {
+//                RWStatus(@"Send Other Status %lu", (unsigned long)eventCode);
+            }
             break;
     }
 }
@@ -83,12 +86,12 @@
 
 - (void)dealloc {
     RWStatus(@"Stream 销毁");
-    if (self.stream) {
-        [self close];
-    }
-    if (self.delegate) {
-        self.delegate = nil;
-    }
+//    if (self.stream) {
+//        [self close];
+//    }
+//    if (self.delegate) {
+//        self.delegate = nil;
+//    }
 }
 
 @end

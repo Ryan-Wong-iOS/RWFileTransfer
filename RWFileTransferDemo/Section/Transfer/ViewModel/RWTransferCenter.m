@@ -57,6 +57,13 @@ static RWTransferCenter *_center = nil;
     return viewModel;
 }
 
+- (NSInteger)getTaskIndexWithTimestampText:(NSString *)timestampText {
+    RWTransferViewModel *viewModel = [self getTaskWithTimestampText:timestampText];
+    NSInteger index = -1;
+    index = [self.allTaskDatas indexOfObject:viewModel];
+    return index;
+}
+
 - (void)nextReadyTask {
     @synchronized(self) {
         [self.readyTaskDatas removeObjectAtIndex:0];

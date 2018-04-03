@@ -87,6 +87,7 @@ static NSString *const RWTransferStatusErrorText = @"错误";
 }
 
 - (void)setStatus:(RWTransferStatus)status {
+    _status = status;
     switch (status) {
         case RWTransferStatusReady:
             _statusText = RWTransferStatusReadyText;

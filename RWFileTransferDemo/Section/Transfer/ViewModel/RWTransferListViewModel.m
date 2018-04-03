@@ -26,6 +26,7 @@
 
 @property (assign, nonatomic)id target;
 
+@property (copy, nonatomic)fromReceiveBeginBlock beginBlock;
 @property (copy, nonatomic)fromReceiveProgressBlock progressBlock;
 @property (copy, nonatomic)fromReceiveFinishBlock finishBlock;
 @property (copy, nonatomic)fromReceiveErrorBlock errorBlock;
@@ -40,6 +41,11 @@
         return peers[0];
     }
     return nil;
+}
+
+- (NSInteger)getTaskIndexWithStreamName:(NSString *)streamName {
+    NSInteger index = [self.center getTaskIndexWithTimestampText:streamName];
+    return index;
 }
 
 #pragma mark - Send
@@ -59,13 +65,15 @@
         NSData *data = [viewModel getTaskData];
         [self.session sendData:data toPeers:@[peer]];
     }
+    
+    viewModel.status = RWTransferStatusPrepare;
 }
 
 - (void)createSendStreamWithTarget:(id)target task:(RWTransferViewModel *)taskModel {
     if (self.center.readyTaskDatas.count <= 0) {
         return;
     }
-    if (taskModel.status != RWTransferStatusReady) {
+    if (taskModel.status != RWTransferStatusPrepare) {
         RWLog(@"目标任务不在准备状态：%@", taskModel);
         return;
     }
@@ -78,6 +86,8 @@
         outputStream.delegate = target;
         [outputStream streamWithAsset:taskModel.asset];
         [outputStream start];
+        
+        taskModel.status = RWTransferStatusTransfer;
     }
 }
 
@@ -85,7 +95,45 @@
     [self.center nextReadyTask];
 }
 
+- (void)sendTaskCurrentProgressUpdate:(NSDictionary *)dict {
+    
+    NSString *timestampText = dict[@"timestamp"];
+    long long progress = [dict[@"progress"] longLongValue];
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:timestampText];
+    taskViewModel.transferSize = progress;
+    
+    if (_progressBlock) {
+        _progressBlock(dict);
+    }
+}
+
+- (void)sendTaskFinishUpdate:(NSDictionary *)dict {
+    
+    NSString *timestampText = dict[@"timestamp"];
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:timestampText];
+    taskViewModel.status = RWTransferStatusFinish;
+    
+    if (_finishBlock) {
+        _finishBlock(dict);
+    }
+}
+
+- (void)sendTaskErrorUpdate:(NSDictionary *)dict {
+    
+    NSString *timestampText = dict[@"timestamp"];
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:timestampText];
+    taskViewModel.status = RWTransferStatusError;
+    
+    if (_errorBlock) {
+        _errorBlock(dict);
+    }
+}
+
 #pragma mark - From Receiver
+
+- (void)sendTaskBegin:(fromReceiveBeginBlock)beginBlock {
+    _beginBlock = beginBlock;
+}
 
 - (void)sendTaskProgress:(fromReceiveProgressBlock)progressBlock {
     _progressBlock = progressBlock;
@@ -119,23 +167,19 @@
         }
         case RWTransferDataTypeReceiveProgress:
         {
-            if (_progressBlock) {
-                _progressBlock(dataDic);
-            }
+            [self sendTaskCurrentProgressUpdate:dataDic];
             break;
         }
         case RWTransferDataTypeFinish:
         {
-            if (_finishBlock) {
-                _finishBlock(dataDic);
-            }
+            RWStatus(@"接收方接收完成");
+            [self sendTaskFinishUpdate:dataDic];
             break;
         }
         case RWTransferDataTypeError:
         {
-            if (_errorBlock) {
-                _errorBlock(dataDic);
-            }
+            RWStatus(@"接收方报错");
+            [self sendTaskErrorUpdate:dataDic];
             break;
         }
             
@@ -149,6 +193,10 @@
     inputStream.streamName = streamName;
     inputStream.delegate = _target;
     [inputStream start];
+    
+    //任务进入传输状态
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:streamName];
+    taskViewModel.status = RWTransferStatusTransfer;
 }
 
 #pragma mark - Handle Receive Data
@@ -165,6 +213,9 @@
                                    }
                            };
     [self sendDataWithDictionary:dict];
+    
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:timestampText];
+    taskViewModel.status = RWTransferStatusPrepare;
 }
 
 - (void)receiveTaskInfoCallback:(NSDictionary *)data {
@@ -172,13 +223,17 @@
     RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:timestampText];
     if (taskViewModel) {
         [self createSendStreamWithTarget:_target task:taskViewModel];
+        !_beginBlock?:_beginBlock(data);
     }
     
-    RWStatus(@"通知发送者具体哪个任务 %@", timestampText);
+    RWStatus(@"发送者收到接收者通知具体哪个任务 %@", timestampText);
 }
 
 #pragma mark - Tell Sender Task Status
 - (void)receiveTaskProgressWithStreamName:(NSString *)name progress:(long long)progress {
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:name];
+    taskViewModel.transferSize = progress;
+    
     NSDictionary *dict = @{
                            @"dataType":@(RWTransferDataTypeReceiveProgress),
                            @"data":@{
@@ -190,6 +245,9 @@
 }
 
 - (void)receiveTaskFinishWithStreamName:(NSString *)name {
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:name];
+    taskViewModel.status = RWTransferStatusFinish;
+    
     NSDictionary *dict = @{
                            @"dataType":@(RWTransferDataTypeFinish),
                            @"data":@{

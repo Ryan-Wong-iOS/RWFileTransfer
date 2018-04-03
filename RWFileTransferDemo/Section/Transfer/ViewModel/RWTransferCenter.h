@@ -23,6 +23,8 @@
 
 - (RWTransferViewModel *)getTaskWithTimestampText:(NSString *)timestampText;
 
+- (NSInteger)getTaskIndexWithTimestampText:(NSString *)timestampText;
+
 - (void)nextReadyTask;
 
 - (void)createReceiveTask:(RWPhotoModel *)model withTimestampText:(NSString *)timestampText;

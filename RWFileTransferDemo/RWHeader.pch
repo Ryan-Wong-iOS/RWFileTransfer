@@ -14,5 +14,6 @@
 
 #import "RWConfig.h"
 #import "RWStringConfig.h"
+#import "RWCommon.h"
 
 #endif /* RWHeader_pch */

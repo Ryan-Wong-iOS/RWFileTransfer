@@ -36,6 +36,7 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
 - (instancetype)initWithOutputStream:(NSOutputStream *)outputStream {
     self = [super init];
     if (self) {
+        RWStatus(@"Init");
         self.stream = [[RWStream alloc] initWithOutputStream:outputStream];
         self.stream.delegate = self;
         self.readyForSend = NO;
@@ -60,7 +61,12 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
         
         RWStatus(@"Loop");
         
-        while (self.readyForSend && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
+//        while (self.readyForSend && [[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]);
+        while (!_readyForSend) {
+            NSLog(@"等待视频获取");
+        }
+        while ([[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]]) {
+        }
         
         RWStatus(@"Done");
     }
@@ -92,6 +98,8 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
         weakSelf.totalSize = _imageData.length;
         weakSelf.sendSize = 0;
         weakSelf.readyForSend = YES;
+        
+        RWLog(@"成功获取视频数据");
     }];
 }
 

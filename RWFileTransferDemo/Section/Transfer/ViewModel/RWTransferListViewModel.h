@@ -8,6 +8,7 @@
 
 #import "RWBaseViewModel.h"
 
+typedef void(^fromReceiveBeginBlock)(NSDictionary *dict);
 typedef void(^fromReceiveProgressBlock)(NSDictionary *dict);
 typedef void(^fromReceiveFinishBlock)(NSDictionary *dict);
 typedef void(^fromReceiveErrorBlock)(NSDictionary *dict);
@@ -15,6 +16,8 @@ typedef void(^fromReceiveErrorBlock)(NSDictionary *dict);
 @interface RWTransferListViewModel : RWBaseViewModel
 
 - (void)setTarget:(id)target;
+
+- (NSInteger)getTaskIndexWithStreamName:(NSString *)streamName;
 
 #pragma mark - Sender
 
@@ -25,6 +28,8 @@ typedef void(^fromReceiveErrorBlock)(NSDictionary *dict);
 - (void)nextReadyTask;
 
 #pragma mark - From Receiver
+
+- (void)sendTaskBegin:(fromReceiveBeginBlock)beginBlock;
 
 - (void)sendTaskProgress:(fromReceiveProgressBlock)progressBlock;
 
