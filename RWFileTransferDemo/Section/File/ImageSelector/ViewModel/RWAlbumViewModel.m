@@ -64,7 +64,7 @@
 }
 
 - (NSString *)getFileNameWith:(PHAsset *)asset {
-    NSString *name = [NSString stringWithFormat:@"%ld", (long)([[NSDate date] timeIntervalSince1970] * 10000)];
+    NSString *name = [NSString stringWithFormat:@"%ld", (long)([[NSDate date] timeIntervalSince1970] * 100000)];
     name = [name stringByReplacingOccurrencesOfString:@"." withString:@"_"];
     NSString *pathExtension = [self getPathExtensionWith:asset];
     name = [NSString stringWithFormat:@"%@.%@", name, pathExtension];

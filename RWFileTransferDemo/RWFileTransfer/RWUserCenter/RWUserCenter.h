@@ -22,4 +22,6 @@
 
 + (instancetype)center;
 
+- (void)remove;
+
 @end

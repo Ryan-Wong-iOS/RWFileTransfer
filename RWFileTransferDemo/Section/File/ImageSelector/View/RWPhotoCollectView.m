@@ -65,11 +65,13 @@ static NSInteger const cols = 3;
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     RWPhotoViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([RWPhotoViewCell class]) forIndexPath:indexPath];
     [cell bindViewModel:_albumViewModel.allAssets[indexPath.row]];
+    
+    __weak typeof(self) weakSelf = self;
     cell.selectAction = ^(BOOL selected) {
         if (selected) {
-            [_albumViewModel selectOne:indexPath.row];
+            [weakSelf.albumViewModel selectOne:indexPath.row];
         } else {
-            [_albumViewModel removeOne:indexPath.row];
+            [weakSelf.albumViewModel removeOne:indexPath.row];
         }
     };
     return cell;

@@ -8,6 +8,8 @@
 
 #import "RWImageLoad.h"
 #import "RWAlbumModel.h"
+#import "UIImage+Resize.h"
+#import "UIImage+Video.h"
 
 static RWImageLoad *_instance = nil;
 @implementation RWImageLoad
@@ -76,7 +78,7 @@ static RWImageLoad *_instance = nil;
 {
     
     PHImageManager *manger = [PHImageManager defaultManager];
-    int32_t imageRequestID = [manger requestImageForAsset:asset targetSize:CGSizeMake(([[UIScreen mainScreen] bounds].size.width-15)/3, ([[UIScreen mainScreen] bounds].size.width-15)/3) contentMode:PHImageContentModeAspectFill options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    int32_t imageRequestID = [manger requestImageForAsset:asset targetSize:CGSizeMake(([[UIScreen mainScreen] bounds].size.width-15)/3, ([[UIScreen mainScreen] bounds].size.width-15)/3) contentMode:PHImageContentModeAspectFit options:nil resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
         completion(result,info,true);
     }];
     return imageRequestID;
@@ -110,7 +112,6 @@ static RWImageLoad *_instance = nil;
 }
 
 - (PHImageRequestID)getVideoInfo:(BOOL)returnInfo AndData:(BOOL)returnData WithAsset:(id)asset completion:(void (^)(long long size, UIImage *image, NSData *data))completion {
-    __weak typeof(self) weakSelf = self;
     PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
     options.version = PHVideoRequestOptionsVersionOriginal;
     int32_t imageRequestID = [[PHImageManager defaultManager] requestAVAssetForVideo:asset options:options resultHandler:^(AVAsset *asset, AVAudioMix *audioMix, NSDictionary *info) {
@@ -120,8 +121,8 @@ static RWImageLoad *_instance = nil;
                  NSNumber *size;
                  [urlAsset.URL getResourceValue:&size forKey:NSURLFileSizeKey error:nil];
                  
-                 UIImage *image = [weakSelf getThumbnailImage:urlAsset];
-                 image = [weakSelf imageWithImageSimple:image scaledToSize:CGSizeMake(150, 150)];
+                 UIImage *image = [UIImage getThumbnailImageWithURLAsset:urlAsset];
+                 image = [UIImage imageWithImageSimple:image scaledToSize:CoverSize];
                  !completion?:completion([size longLongValue], image, nil);
              }
              
@@ -131,49 +132,12 @@ static RWImageLoad *_instance = nil;
                  if (error) {
                      NSLog(@"视频错误 :%@", error);
                  }
-                 NSLog(@"data length %ld", data.length);
+                 NSLog(@"data length %lu", (unsigned long)data.length);
                  !completion?:completion(0, nil, data);
              }
          }
     }];
     return imageRequestID;
-}
-
-- (UIImage *)getThumbnailImage:(id)object
-{
-    AVURLAsset *asset;
-    if ([object isKindOfClass:[NSString class]]) {
-        asset = [[AVURLAsset alloc] initWithURL:[NSURL fileURLWithPath:object] options:nil];
-    } else if ([object isKindOfClass:[AVURLAsset class]]) {
-        asset = (AVURLAsset *)object;
-    }
-    AVAssetImageGenerator *gen = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-    gen.appliesPreferredTrackTransform = YES;
-    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
-    NSError *error = nil;
-    CMTime actualTime;
-    CGImageRef image = [gen copyCGImageAtTime:time actualTime:&actualTime error:&error];
-    UIImage *thumb = [[UIImage alloc] initWithCGImage:image];
-    CGImageRelease(image);
-    return thumb;
-}
-
-- (UIImage*)imageWithImageSimple:(UIImage*)image scaledToSize:(CGSize)newSize
-{
-    CGSize oldSize = image.size;
-    CGFloat radio = oldSize.width / oldSize.height;
-    CGSize finalSize;
-    if (radio < 1.0) {
-        finalSize = CGSizeMake(newSize.width, newSize.width / radio);
-    } else {
-        finalSize = CGSizeMake(newSize.height / radio, newSize.height);
-    }
-    
-    UIGraphicsBeginImageContext(newSize);
-    [image drawInRect:CGRectMake(0,0,finalSize.width,finalSize.height)];
-    UIImage* newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    return newImage;
 }
 
 @end

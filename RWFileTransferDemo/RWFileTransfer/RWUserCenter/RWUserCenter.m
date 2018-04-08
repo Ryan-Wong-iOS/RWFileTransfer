@@ -19,4 +19,11 @@ static RWUserCenter *_instance = nil;
     return _instance;
 }
 
+- (void)remove {
+    self.name = nil;
+    self.identifier = nil;
+    self.myPeerID = nil;
+    self.session = nil;
+}
+
 @end

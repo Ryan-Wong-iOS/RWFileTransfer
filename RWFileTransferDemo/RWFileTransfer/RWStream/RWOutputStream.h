@@ -27,7 +27,7 @@
 
 - (instancetype)initWithOutputStream:(NSOutputStream *)outputStream;
 
-- (void)streamWithAsset:(id)asset;
+- (void)streamWithAsset:(id)asset fileType:(NSString *)fileType;
 
 - (void)start;
 

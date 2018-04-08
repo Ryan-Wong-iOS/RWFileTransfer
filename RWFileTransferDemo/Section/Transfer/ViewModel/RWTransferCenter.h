@@ -29,4 +29,6 @@
 
 - (void)createReceiveTask:(RWPhotoModel *)model withTimestampText:(NSString *)timestampText;
 
+- (void)removeAllTaskData;
+
 @end

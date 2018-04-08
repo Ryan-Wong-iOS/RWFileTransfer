@@ -84,7 +84,7 @@
         RWOutputStream *outputStream = [[RWOutputStream alloc] initWithOutputStream:[self.session outputStreamForPeer:peers[0] With:taskModel.timestampText]];
         outputStream.streamName = taskModel.timestampText;
         outputStream.delegate = target;
-        [outputStream streamWithAsset:taskModel.asset];
+        [outputStream streamWithAsset:taskModel.asset fileType:taskModel.fileType];
         [outputStream start];
         
         taskModel.status = RWTransferStatusTransfer;
@@ -277,16 +277,26 @@
 
 #pragma mark - Handler Receive File
 
-- (void)handleTmpFile:(NSString *)filePath name:(NSString *)name {
+- (void)handleTmpFile:(NSString *)filePath name:(NSString *)name completion:(void(^)(NSString *targetName))completion {
     RWLog(@"传输完成 得到临时文件路径 ： %@ |||| %@", filePath, name);
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:name];
-        NSString *pictureDirectory = [RWFileManager picturesDirectory];
+        NSString *fileDirectory;
+        if ([taskViewModel.fileType isEqualToString:kFileTypePicture]) {
+            fileDirectory = [RWFileManager picturesDirectory];
+        } else if ([taskViewModel.fileType isEqualToString:kFileTypeVideo]) {
+            fileDirectory = [RWFileManager videosDirectory];
+        }
         NSString *fileName = taskViewModel.name;
-        NSString *targetPath = [NSString stringWithFormat:@"%@/%@", pictureDirectory, fileName];
+        NSString *targetPath = [NSString stringWithFormat:@"%@/%@", fileDirectory, fileName];
         [weakSelf moveItemFrom:filePath to:targetPath];
+        taskViewModel.sandboxPath = targetPath;
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            !completion?:completion(name);
+        });
     });
 }
 

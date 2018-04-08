@@ -32,6 +32,8 @@ typedef NS_ENUM(NSUInteger, RWTransferSource) {
 
 @property (copy, nonatomic, readonly)PHAsset *asset;
 
+@property (copy, nonatomic)NSString *sandboxPath;
+
 @property (assign, nonatomic)long long size;
 
 @property (assign, nonatomic)long long transferSize;
@@ -50,8 +52,14 @@ typedef NS_ENUM(NSUInteger, RWTransferSource) {
 
 @property (copy, nonatomic, readonly)NSString *pathExtension;
 
+@property (strong, nonatomic)UIImage *cover;
+
 - (instancetype) initWithModel:(RWPhotoModel *)model;
 
 - (NSData *)getTaskData;
+
+- (void)loadImageDataWithPhotoWidth:(CGFloat)photoWidth success:(void(^)(id))success failure:(void (^)(NSError *))failure;
+
+- (void)loadSandBoxImageWithIsCoverSize:(BOOL)isCoverSize completion:(void(^)(UIImage *coverImage))completion;
 
 @end

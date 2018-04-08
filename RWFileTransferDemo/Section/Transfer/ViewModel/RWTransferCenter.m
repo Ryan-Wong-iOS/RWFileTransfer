@@ -31,7 +31,7 @@ static RWTransferCenter *_center = nil;
         RWTransferViewModel *viewModel = [[RWTransferViewModel alloc] initWithModel:model];
         viewModel.source = RWTransferSourceMine;
         [array addObject:viewModel];
-        NSLog(@"%@", viewModel.timestampText);
+        RWLog(@"文件名 ：%@", viewModel.name);
     }
     @synchronized(self) {
         [self.readyTaskDatas addObjectsFromArray:array];
@@ -81,6 +81,12 @@ static RWTransferCenter *_center = nil;
     @synchronized(self) {
         [self.allTaskDatas addObject:taskModel];
     }
+}
+
+#pragma mark - Remove
+- (void)removeAllTaskData {
+    [self.allTaskDatas removeAllObjects];
+    [self.readyTaskDatas removeAllObjects];
 }
 
 #pragma mark - Lazy load

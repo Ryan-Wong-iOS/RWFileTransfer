@@ -43,11 +43,13 @@
     RWVideoListViewCell *cell = [tableView dequeueReusableCellWithIdentifier:NSStringFromClass([RWVideoListViewCell class]) forIndexPath:indexPath];
     
     [cell bindViewModel:_albumViewModel.allAssets[indexPath.row]];
+    
+    __weak typeof(self) weakSelf = self;
     cell.selectAction = ^(BOOL selected) {
         if (selected) {
-            [_albumViewModel selectOne:indexPath.row];
+            [weakSelf.albumViewModel selectOne:indexPath.row];
         } else {
-            [_albumViewModel removeOne:indexPath.row];
+            [weakSelf.albumViewModel removeOne:indexPath.row];
         }
     };
     return cell;

@@ -7,8 +7,13 @@
 //
 
 #import "RWTransferViewModel.h"
+
 #import "RWDataTransfer.h"
 #import "RWImageLoad.h"
+#import "RWFileManager.h"
+
+#import "UIImage+Resize.h"
+#import "UIImage+Video.h"
 
 static NSString *const RWTransferStatusReadyText = @"初始化";
 static NSString *const RWTransferStatusPrepareText = @"准备中";
@@ -56,7 +61,7 @@ static NSString *const RWTransferStatusErrorText = @"错误";
 }
 
 - (NSData *)getTaskData {
-    
+    __weak typeof(self) weakSelf = self;
     NSLock *lock = [[NSLock alloc] init];
     __block NSInteger tag = 0;
     while(true) {
@@ -64,11 +69,20 @@ static NSString *const RWTransferStatusErrorText = @"错误";
         if (tag != 0) {
             break;
         }
-        [[RWImageLoad shareLoad] getVideoInfoWithAsset:_asset completion:^(long long size, UIImage *image) {
-            _size = size;
-            tag = 1;
-            [lock unlock];
-        }];
+        if ([_fileType isEqualToString:kFileTypeVideo]) {
+            [[RWImageLoad shareLoad] getVideoInfoWithAsset:_asset completion:^(long long size, UIImage *image) {
+                weakSelf.size = size;
+                tag = 1;
+                [lock unlock];
+            }];
+        } else if ([_fileType isEqualToString:kFileTypePicture]) {
+            [[RWImageLoad shareLoad] getPhotoDataWithAsset:_asset completion:^(NSData *imageData, NSString *dataUTI, NSDictionary *info) {
+                weakSelf.size = imageData.length;
+                tag = 1;
+                [lock unlock];
+            }];
+        }
+        
     }
     
     NSDictionary *dict = @{
@@ -115,6 +129,32 @@ static NSString *const RWTransferStatusErrorText = @"错误";
             
         default:
             break;
+    }
+}
+
+- (void)loadImageDataWithPhotoWidth:(CGFloat)photoWidth success:(void(^)(id))success failure:(void (^)(NSError *))failure {
+    
+    __weak typeof(self) weakSelf = self;
+    [[RWImageLoad shareLoad] getPhotoWithAsset:_asset photoWidth:photoWidth completion:^(UIImage *photo, NSDictionary *info, BOOL isDegraded) {
+        weakSelf.cover = photo;
+        !success?:success(photo);
+    } progressHandler:nil networkAccessAllowed:NO];
+}
+
+- (void)loadSandBoxImageWithIsCoverSize:(BOOL)isCoverSize completion:(void(^)(UIImage *coverImage))completion {
+    
+    if ([RWFileManager fileExistsAtPath:_sandboxPath]) {
+        UIImage *cover = nil;
+        if ([_fileType isEqualToString:kFileTypePicture]) {
+            cover = [UIImage imageWithContentsOfFile:_sandboxPath];
+        } else if ([_fileType isEqualToString:kFileTypeVideo]) {
+            cover = [UIImage getThumbnailImageWithFilePath:_sandboxPath];
+        }
+        if (isCoverSize) {
+            cover = [UIImage imageWithImageSimple:cover scaledToSize:CoverSize];
+            _cover = cover;
+        }
+        !completion?:completion(cover);
     }
 }
 

@@ -68,11 +68,31 @@
 }
 
 - (void)chooseAction {
-    RWAlbumListViewModel *viewModel = [[RWAlbumListViewModel alloc] init];
-    viewModel.title = @"选择相册";
-//    RWAlbumListViewController *vc = [[RWAlbumListViewController alloc] initWithViewModel:viewModel];
-    RWVideoListViewController *vc = [[RWVideoListViewController alloc] initWithViewModel:viewModel];
-    [self.navigationController pushViewController:vc animated:YES];
+    UIAlertController *alertCtrl = [UIAlertController alertControllerWithTitle:@"请选择发送的文件目录" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [alertCtrl addAction:[UIAlertAction actionWithTitle:@"照片" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RWAlbumListViewModel *viewModel = [[RWAlbumListViewModel alloc] init];
+            viewModel.title = @"选择相册";
+                RWAlbumListViewController *vc = [[RWAlbumListViewController alloc] initWithViewModel:viewModel];
+            [self.navigationController pushViewController:vc animated:YES];
+        });
+    }]];
+    
+    [alertCtrl addAction:[UIAlertAction actionWithTitle:@"视频" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            RWAlbumListViewModel *viewModel = [[RWAlbumListViewModel alloc] init];
+            viewModel.title = @"选择视频";
+            RWVideoListViewController *vc = [[RWVideoListViewController alloc] initWithViewModel:viewModel];
+            [self.navigationController pushViewController:vc animated:YES];
+        });
+    }]];
+    
+    [alertCtrl addAction:[UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action) {
+        
+    }]];
+    
+    [self.navigationController presentViewController:alertCtrl animated:YES completion:nil];
 }
 
 - (void)sendTaskInfo {
@@ -106,8 +126,9 @@
     outputStream.delegate = nil;
     outputStream = nil;
     
+    __weak typeof(self) weakSelf = self;
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [_viewModel nextReadyTask];
+        [weakSelf.viewModel nextReadyTask];
         [self sendTaskInfo];
     });
 }
@@ -129,7 +150,11 @@
 }
 
 - (void)inputStream:(RWInputStream *)inputStream transferEndWithStreamName:(NSString *)name filePath:(NSString *)filePath {
-    [_viewModel handleTmpFile:filePath name:name];
+    __weak typeof(self) weakSelf = self;
+    [_viewModel handleTmpFile:filePath name:name completion:^(NSString *targetName) {
+        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:targetName];
+        [weakSelf.transferListView reloadSingleCell:index];
+    }];
     [_viewModel receiveTaskFinishWithStreamName:name];
     
     [inputStream stop];
@@ -156,19 +181,19 @@
     __weak typeof(self) weakSelf = self;
     [_viewModel sendTaskBegin:^(NSDictionary *dict) {
         NSString *name = dict[@"timestamp"];
-        NSInteger index = [_viewModel getTaskIndexWithStreamName:name];
+        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:name];
         [weakSelf.transferListView reloadSingleCell:index];
     }];
     
     [_viewModel sendTaskProgress:^(NSDictionary *dict) {
         NSString *name = dict[@"timestamp"];
-        NSInteger index = [_viewModel getTaskIndexWithStreamName:name];
+        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:name];
         [weakSelf.transferListView reloadProgressCell:index];
     }];
     
     [_viewModel sendTaskFinish:^(NSDictionary *dict) {
         NSString *name = dict[@"timestamp"];
-        NSInteger index = [_viewModel getTaskIndexWithStreamName:name];
+        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:name];
         [weakSelf.transferListView reloadSingleCell:index];
         
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -179,7 +204,7 @@
     
     [_viewModel sendTaskError:^(NSDictionary *dict) {
         NSString *name = dict[@"timestamp"];
-        NSInteger index = [_viewModel getTaskIndexWithStreamName:name];
+        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:name];
         [weakSelf.transferListView reloadSingleCell:index];
     }];
 }
@@ -199,6 +224,8 @@
 -(void)dealloc {
     RWStatus(@"传输圈销毁");
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    [[RWUserCenter center] remove];
+    [[RWTransferCenter center] removeAllTaskData];
 }
 
 @end

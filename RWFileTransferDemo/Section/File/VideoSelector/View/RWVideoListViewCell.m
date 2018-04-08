@@ -39,10 +39,11 @@
     _titleLab.text = _viewModel.name;
     _selectBtn.selected = _viewModel.selected;
     
+    __weak typeof(self) weakSelf = self;
     [_viewModel loadVideoDataSuccess:^(long long size, UIImage *image) {
         dispatch_async(dispatch_get_main_queue(), ^{
-            _coverV.image = image;
-            _sizeLab.text = [NSString stringWithFormat:@"%.2fMB",(CGFloat)(size / 1024.0 / 1024.0)];
+            weakSelf.coverV.image = image;
+            weakSelf.sizeLab.text = [NSString stringWithFormat:@"%.2fMB",(CGFloat)(size / 1024.0 / 1024.0)];
         });
     } failure:^(NSError *error) {
         

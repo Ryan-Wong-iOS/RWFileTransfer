@@ -53,6 +53,6 @@ typedef void(^fromReceiveErrorBlock)(NSDictionary *dict);
 
 #pragma mark - Handler Receive File
 
-- (void)handleTmpFile:(NSString *)filePath name:(NSString *)name;
+- (void)handleTmpFile:(NSString *)filePath name:(NSString *)name completion:(void(^)(NSString *targetName))completion;
 
 @end

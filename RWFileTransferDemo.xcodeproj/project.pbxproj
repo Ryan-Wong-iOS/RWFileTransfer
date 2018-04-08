@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A3225F5207633220087C2CA /* UIImage+Resize.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3225F4207633220087C2CA /* UIImage+Resize.m */; };
+		9A3225F9207640310087C2CA /* UIImage+Video.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3225F8207640310087C2CA /* UIImage+Video.m */; };
 		9A3502CE205133A000F001E7 /* RWFileHandle.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3502CD205133A000F001E7 /* RWFileHandle.m */; };
 		9A3FEACC20468070008CBBBB /* RWAlbumListViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3FEACB20468070008CBBBB /* RWAlbumListViewModel.m */; };
 		9A3FEACF20468097008CBBBB /* RWAlbumListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3FEACE20468097008CBBBB /* RWAlbumListViewController.m */; };
@@ -14,7 +16,6 @@
 		9A3FEAD820468EDC008CBBBB /* RWBaseViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3FEAD720468EDC008CBBBB /* RWBaseViewModel.m */; };
 		9A3FEADC20469852008CBBBB /* RWAlbumListViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A3FEADA20469852008CBBBB /* RWAlbumListViewCell.m */; };
 		9A3FEADD20469852008CBBBB /* RWAlbumListViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9A3FEADB20469852008CBBBB /* RWAlbumListViewCell.xib */; };
-		9A4DDAEB2064A985007F0B01 /* RWTransferListProgressCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A4DDAEA2064A985007F0B01 /* RWTransferListProgressCell.m */; };
 		9A593D592047979F00F09F73 /* RWImageSelectorViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A593D582047979F00F09F73 /* RWImageSelectorViewModel.m */; };
 		9A593D5C2047A5B600F09F73 /* RWimageViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A593D5B2047A5B600F09F73 /* RWimageViewModel.m */; };
 		9A593D5F2047A6D700F09F73 /* RWPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 9A593D5E2047A6D700F09F73 /* RWPhotoModel.m */; };
@@ -76,6 +77,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		9A3225F3207633220087C2CA /* UIImage+Resize.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Resize.h"; sourceTree = "<group>"; };
+		9A3225F4207633220087C2CA /* UIImage+Resize.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Resize.m"; sourceTree = "<group>"; };
+		9A3225F62076361C0087C2CA /* RWParamsConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWParamsConfig.h; sourceTree = "<group>"; };
+		9A3225F7207640310087C2CA /* UIImage+Video.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+Video.h"; sourceTree = "<group>"; };
+		9A3225F8207640310087C2CA /* UIImage+Video.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Video.m"; sourceTree = "<group>"; };
 		9A3502CC205133A000F001E7 /* RWFileHandle.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWFileHandle.h; sourceTree = "<group>"; };
 		9A3502CD205133A000F001E7 /* RWFileHandle.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWFileHandle.m; sourceTree = "<group>"; };
 		9A3FEACA20468070008CBBBB /* RWAlbumListViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWAlbumListViewModel.h; sourceTree = "<group>"; };
@@ -90,8 +96,6 @@
 		9A3FEADA20469852008CBBBB /* RWAlbumListViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWAlbumListViewCell.m; sourceTree = "<group>"; };
 		9A3FEADB20469852008CBBBB /* RWAlbumListViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RWAlbumListViewCell.xib; sourceTree = "<group>"; };
 		9A3FEADF2046B1DC008CBBBB /* RWConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RWConfig.h; sourceTree = "<group>"; };
-		9A4DDAE92064A985007F0B01 /* RWTransferListProgressCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWTransferListProgressCell.h; sourceTree = "<group>"; };
-		9A4DDAEA2064A985007F0B01 /* RWTransferListProgressCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWTransferListProgressCell.m; sourceTree = "<group>"; };
 		9A593D572047979F00F09F73 /* RWImageSelectorViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWImageSelectorViewModel.h; sourceTree = "<group>"; };
 		9A593D582047979F00F09F73 /* RWImageSelectorViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RWImageSelectorViewModel.m; sourceTree = "<group>"; };
 		9A593D5A2047A5B600F09F73 /* RWimageViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RWimageViewModel.h; sourceTree = "<group>"; };
@@ -200,6 +204,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		9A3225F2207632C20087C2CA /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				9A3225F3207633220087C2CA /* UIImage+Resize.h */,
+				9A3225F4207633220087C2CA /* UIImage+Resize.m */,
+				9A3225F7207640310087C2CA /* UIImage+Video.h */,
+				9A3225F8207640310087C2CA /* UIImage+Video.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		9A3502CB2051339200F001E7 /* RWFileHandle */ = {
 			isa = PBXGroup;
 			children = (
@@ -250,6 +265,7 @@
 			children = (
 				9A3FEADF2046B1DC008CBBBB /* RWConfig.h */,
 				9ABD5D6A205D0E3000E47538 /* RWStringConfig.h */,
+				9A3225F62076361C0087C2CA /* RWParamsConfig.h */,
 			);
 			path = Config;
 			sourceTree = "<group>";
@@ -297,6 +313,7 @@
 				9A63CC71200F29D1007C31C4 /* RWFileTransfer */,
 				9A63CC72200F29D1007C31C4 /* Section */,
 				9A7EA7D6206F933A00FA0418 /* Common */,
+				9A3225F2207632C20087C2CA /* Category */,
 				9A63CC3F200F2934007C31C4 /* AppDelegate.h */,
 				9A63CC40200F2934007C31C4 /* AppDelegate.m */,
 				9A63CC42200F2934007C31C4 /* ViewController.h */,
@@ -439,8 +456,6 @@
 				9A65379920639175007A30AA /* RWTransferListView.m */,
 				9A65379B2063A676007A30AA /* RWTransferListCell.h */,
 				9A65379C2063A676007A30AA /* RWTransferListCell.m */,
-				9A4DDAE92064A985007F0B01 /* RWTransferListProgressCell.h */,
-				9A4DDAEA2064A985007F0B01 /* RWTransferListProgressCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -678,7 +693,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = RW;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = RyanWong;
 				TargetAttributes = {
 					9A63CC3B200F2934007C31C4 = {
@@ -756,13 +771,13 @@
 				9A63CC44200F2934007C31C4 /* ViewController.m in Sources */,
 				9AC1ADA920528E2400288FF5 /* RWVideoListViewCell.m in Sources */,
 				9A3FEAD420468DB6008CBBBB /* RWBaseViewController.m in Sources */,
-				9A4DDAEB2064A985007F0B01 /* RWTransferListProgressCell.m in Sources */,
 				9A65379A20639175007A30AA /* RWTransferListView.m in Sources */,
 				9A63CC4F200F2934007C31C4 /* main.m in Sources */,
 				9A63CC8F200F4621007C31C4 /* RWUserCenter.m in Sources */,
 				9AC4FA0C204531C50074D134 /* RWAlbumTableView.m in Sources */,
 				9AC4F9FD204408AC0074D134 /* RWAlbumModel.m in Sources */,
 				9A3502CE205133A000F001E7 /* RWFileHandle.m in Sources */,
+				9A3225F5207633220087C2CA /* UIImage+Resize.m in Sources */,
 				9A63CC92200F4762007C31C4 /* RWBrowser.m in Sources */,
 				9A3FEADC20469852008CBBBB /* RWAlbumListViewCell.m in Sources */,
 				9AC1AD9820526E9B00288FF5 /* RWFileManager.m in Sources */,
@@ -783,6 +798,7 @@
 				9AD1DD04204A385E00C51B8F /* RWInputStream.m in Sources */,
 				9A3FEAD820468EDC008CBBBB /* RWBaseViewModel.m in Sources */,
 				9AC4FA09204412310074D134 /* RWImageSelectorViewController.m in Sources */,
+				9A3225F9207640310087C2CA /* UIImage+Video.m in Sources */,
 				9A593D5C2047A5B600F09F73 /* RWimageViewModel.m in Sources */,
 				9A5F9E6C204932C900C7BF44 /* RWTransferViewModel.m in Sources */,
 				9A3FEACC20468070008CBBBB /* RWAlbumListViewModel.m in Sources */,
@@ -861,6 +877,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -868,6 +885,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -916,6 +934,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -923,6 +942,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;

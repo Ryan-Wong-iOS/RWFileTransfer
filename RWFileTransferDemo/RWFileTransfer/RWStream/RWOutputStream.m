@@ -84,23 +84,28 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
     RWStatus(@"Stop");
 }
 
-- (void)streamWithAsset:(id)asset {
+- (void)streamWithAsset:(id)asset fileType:(NSString *)fileType {
     __weak typeof(self)weakSelf = self;
-//    [[RWImageLoad shareLoad] getPhotoDataWithAsset:asset completion:^(NSData *imageData, NSString *dataUTI, NSDictionary *info) {
-//        weakSelf.imageData = [NSData dataWithData:imageData];
-//        weakSelf.totalSize = _imageData.length;
-//        weakSelf.sendSize = 0;
-//        weakSelf.readyForSend = YES;
-//    }];
     
-    [[RWImageLoad shareLoad] getVideoDataWithAsset:asset completion:^(NSData *data) {
-        weakSelf.imageData = [NSData dataWithData:data];
-        weakSelf.totalSize = _imageData.length;
-        weakSelf.sendSize = 0;
-        weakSelf.readyForSend = YES;
-        
-        RWLog(@"成功获取视频数据");
-    }];
+    if (fileType == kFileTypePicture) {
+        [[RWImageLoad shareLoad] getPhotoDataWithAsset:asset completion:^(NSData *imageData, NSString *dataUTI, NSDictionary *info) {
+            weakSelf.imageData = [NSData dataWithData:imageData];
+            weakSelf.totalSize = weakSelf.imageData.length;
+            weakSelf.sendSize = 0;
+            weakSelf.readyForSend = YES;
+            
+            RWLog(@"成功获取图片数据");
+        }];
+    } else if (fileType == kFileTypeVideo) {
+        [[RWImageLoad shareLoad] getVideoDataWithAsset:asset completion:^(NSData *data) {
+            weakSelf.imageData = [NSData dataWithData:data];
+            weakSelf.totalSize = weakSelf.imageData.length;
+            weakSelf.sendSize = 0;
+            weakSelf.readyForSend = YES;
+            
+            RWLog(@"成功获取视频数据");
+        }];
+    }
 }
 
 - (void)sendDataChunk {

@@ -13,4 +13,8 @@
 
 - (void)bindViewModel:(RWTransferViewModel *)viewModel;
 
+- (void)inNormalModel:(RWTransferViewModel *)viewModel;
+
+- (void)inProgressModel:(RWTransferViewModel *)viewModel;
+
 @end
