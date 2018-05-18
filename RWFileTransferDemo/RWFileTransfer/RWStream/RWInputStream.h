@@ -11,11 +11,11 @@
 @class RWInputStream;
 @protocol RWInputStreamDelegate <NSObject>
 
-- (void)inputStream:(RWInputStream *)inputStream streamName:(NSString *)name progress:(long long)progress;
+- (void)inputStream:(RWInputStream *)inputStream streamName:(NSString *)streamName progress:(long long)progress;
 
-- (void)inputStream:(RWInputStream *)inputStream transferEndWithStreamName:(NSString *)name filePath:(NSString *)filePath;
+- (void)inputStream:(RWInputStream *)inputStream transferEndWithStreamName:(NSString *)streamName filePath:(NSString *)filePath;
 
-- (void)inputStream:(RWInputStream *)inputStream transferErrorWithStreamName:(NSString *)name;
+- (void)inputStream:(RWInputStream *)inputStream transferErrorWithStreamName:(NSString *)streamName;
 
 @end
 

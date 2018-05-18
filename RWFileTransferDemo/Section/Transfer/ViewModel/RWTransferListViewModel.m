@@ -30,6 +30,7 @@
 @property (copy, nonatomic)fromReceiveProgressBlock progressBlock;
 @property (copy, nonatomic)fromReceiveFinishBlock finishBlock;
 @property (copy, nonatomic)fromReceiveErrorBlock errorBlock;
+@property (copy, nonatomic)fromReceiveCancelBlock cancelBlock;
 
 @end
 
@@ -88,6 +89,7 @@
         [outputStream start];
         
         taskModel.status = RWTransferStatusTransfer;
+        taskModel.outputStream = outputStream;
     }
 }
 
@@ -197,6 +199,7 @@
     //任务进入传输状态
     RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:streamName];
     taskViewModel.status = RWTransferStatusTransfer;
+    taskViewModel.inputStream = inputStream;
 }
 
 #pragma mark - Handle Receive Data
@@ -230,38 +233,38 @@
 }
 
 #pragma mark - Tell Sender Task Status
-- (void)receiveTaskProgressWithStreamName:(NSString *)name progress:(long long)progress {
-    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:name];
+- (void)receiveTaskProgressWithStreamName:(NSString *)streamName progress:(long long)progress {
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:streamName];
     taskViewModel.transferSize = progress;
     
     NSDictionary *dict = @{
                            @"dataType":@(RWTransferDataTypeReceiveProgress),
                            @"data":@{
-                                   @"timestamp":name,
+                                   @"timestamp":streamName,
                                    @"progress":@(progress)
                                    }
                            };
     [self sendDataWithDictionary:dict];
 }
 
-- (void)receiveTaskFinishWithStreamName:(NSString *)name {
-    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:name];
+- (void)receiveTaskFinishWithStreamName:(NSString *)streamName {
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:streamName];
     taskViewModel.status = RWTransferStatusFinish;
     
     NSDictionary *dict = @{
                            @"dataType":@(RWTransferDataTypeFinish),
                            @"data":@{
-                                   @"timestamp":name,
+                                   @"timestamp":streamName,
                                    }
                            };
     [self sendDataWithDictionary:dict];
 }
 
-- (void)receiveTaskErrorWithStreamName:(NSString *)name {
+- (void)receiveTaskErrorWithStreamName:(NSString *)streamName {
     NSDictionary *dict = @{
                            @"dataType":@(RWTransferDataTypeError),
                            @"data":@{
-                                   @"timestamp":name,
+                                   @"timestamp":streamName,
                                    }
                            };
     [self sendDataWithDictionary:dict];
@@ -272,6 +275,37 @@
     if (peer) {
         NSData *data = [RWDataTransfer dictionaryToData:dict];
         [self.session sendData:data toPeers:@[peer]];
+    }
+}
+
+#pragma mark - Common
+
+- (void)cancelTaskWithStreamName:(NSString *)streamName {
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:streamName];
+    taskViewModel.status = RWTransferStatusCancel;
+    [taskViewModel.outputStream stop];
+    [taskViewModel.inputStream stop];
+    
+    NSDictionary *dict = @{
+                           @"dataType":@(RWTransferDataTypeCancel),
+                           @"data":@{
+                                   @"timestamp":streamName,
+                                   }
+                           };
+    [self sendDataWithDictionary:dict];
+}
+
+- (void)sendTaskCancel:(fromReceiveCancelBlock)cancelBlock {
+    _cancelBlock = cancelBlock;
+}
+
+- (void)sendTaskCancelUpdate:(NSDictionary *)dict {
+    NSString *timestampText = dict[@"timestamp"];
+    RWTransferViewModel *taskViewModel = [self.center getTaskWithTimestampText:timestampText];
+    taskViewModel.status = RWTransferStatusCancel;
+    
+    if (_cancelBlock) {
+        _cancelBlock(dict);
     }
 }
 

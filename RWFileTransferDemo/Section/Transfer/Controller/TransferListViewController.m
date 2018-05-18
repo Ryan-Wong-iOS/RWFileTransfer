@@ -143,36 +143,36 @@
 }
 
 #pragma mark - RWInputStream Delegate
-- (void)inputStream:(RWInputStream *)inputStream streamName:(NSString *)name progress:(long long)progress {
-    [_viewModel receiveTaskProgressWithStreamName:name progress:progress];
-    NSInteger index = [_viewModel getTaskIndexWithStreamName:name];
+- (void)inputStream:(RWInputStream *)inputStream streamName:(NSString *)streamName progress:(long long)progress {
+    [_viewModel receiveTaskProgressWithStreamName:streamName progress:progress];
+    NSInteger index = [_viewModel getTaskIndexWithStreamName:streamName];
     [_transferListView reloadProgressCell:index];
 }
 
-- (void)inputStream:(RWInputStream *)inputStream transferEndWithStreamName:(NSString *)name filePath:(NSString *)filePath {
+- (void)inputStream:(RWInputStream *)inputStream transferEndWithStreamName:(NSString *)streamName filePath:(NSString *)filePath {
     __weak typeof(self) weakSelf = self;
-    [_viewModel handleTmpFile:filePath name:name completion:^(NSString *targetName) {
+    [_viewModel handleTmpFile:filePath name:streamName completion:^(NSString *targetName) {
         NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:targetName];
         [weakSelf.transferListView reloadSingleCell:index];
     }];
-    [_viewModel receiveTaskFinishWithStreamName:name];
+    [_viewModel receiveTaskFinishWithStreamName:streamName];
     
     [inputStream stop];
     inputStream.delegate = nil;
     inputStream = nil;
     
-    NSInteger index = [_viewModel getTaskIndexWithStreamName:name];
+    NSInteger index = [_viewModel getTaskIndexWithStreamName:streamName];
     [_transferListView reloadSingleCell:index];
 }
 
-- (void)inputStream:(RWInputStream *)inputStream transferErrorWithStreamName:(NSString *)name {
-    [_viewModel receiveTaskErrorWithStreamName:name];
+- (void)inputStream:(RWInputStream *)inputStream transferErrorWithStreamName:(NSString *)streamName {
+    [_viewModel receiveTaskErrorWithStreamName:streamName];
     
     [inputStream stop];
     inputStream.delegate = nil;
     inputStream = nil;
     
-    NSInteger index = [_viewModel getTaskIndexWithStreamName:name];
+    NSInteger index = [_viewModel getTaskIndexWithStreamName:streamName];
     [_transferListView reloadSingleCell:index];
 }
 
@@ -180,20 +180,20 @@
 - (void)registerSenderTaskListener {
     __weak typeof(self) weakSelf = self;
     [_viewModel sendTaskBegin:^(NSDictionary *dict) {
-        NSString *name = dict[@"timestamp"];
-        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:name];
+        NSString *streamName = dict[@"timestamp"];
+        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:streamName];
         [weakSelf.transferListView reloadSingleCell:index];
     }];
     
     [_viewModel sendTaskProgress:^(NSDictionary *dict) {
-        NSString *name = dict[@"timestamp"];
-        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:name];
+        NSString *streamName = dict[@"timestamp"];
+        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:streamName];
         [weakSelf.transferListView reloadProgressCell:index];
     }];
     
     [_viewModel sendTaskFinish:^(NSDictionary *dict) {
-        NSString *name = dict[@"timestamp"];
-        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:name];
+        NSString *streamName = dict[@"timestamp"];
+        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:streamName];
         [weakSelf.transferListView reloadSingleCell:index];
         
 //        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0f * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -203,8 +203,8 @@
     }];
     
     [_viewModel sendTaskError:^(NSDictionary *dict) {
-        NSString *name = dict[@"timestamp"];
-        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:name];
+        NSString *streamName = dict[@"timestamp"];
+        NSInteger index = [weakSelf.viewModel getTaskIndexWithStreamName:streamName];
         [weakSelf.transferListView reloadSingleCell:index];
     }];
 }

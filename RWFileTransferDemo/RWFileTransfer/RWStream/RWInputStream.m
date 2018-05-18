@@ -64,6 +64,13 @@ UInt32 const kRWStreamReadMaxLength = 4096;
 - (void)stopThread
 {
     [self.stream close];
+    self.appendData = nil;
+    [self.fileHandle  synchronizeFile];
+    [self.fileHandle  closeFile];
+    self.fileHandle = nil;
+    [self.streamThread cancel];
+    self.stream = nil;
+    self.delegate = nil;
     RWStatus(@"Stop");
 }
 
@@ -89,9 +96,6 @@ UInt32 const kRWStreamReadMaxLength = 4096;
             
         case RWStreamEventEnd:
             RWStatus(@"Transfer End");
-            self.appendData = nil;
-            [self.fileHandle  synchronizeFile];
-            [self.fileHandle  closeFile];
             if (_delegate && [_delegate respondsToSelector:@selector(inputStream:transferEndWithStreamName:filePath:)]) {
                 [_delegate inputStream:self transferEndWithStreamName:_streamName filePath:[self getTmpFilePath]];
             }
@@ -131,6 +135,10 @@ UInt32 const kRWStreamReadMaxLength = 4096;
     NSString *tmp = [RWFileManager tmpPath];
     NSString *path = [NSString stringWithFormat:@"%@%@", tmp, _streamName];
     return path;
+}
+
+-(void)dealloc {
+    RWStatus(@"RWInputStream 销毁");
 }
 
 @end

@@ -15,6 +15,9 @@
 #import "UIImage+Resize.h"
 #import "UIImage+Video.h"
 
+#import "RWOutputStream.h"
+#import "RWInputStream.h"
+
 static NSString *const RWTransferStatusReadyText = @"初始化";
 static NSString *const RWTransferStatusPrepareText = @"准备中";
 static NSString *const RWTransferStatusTransferText = @"传输中";

@@ -26,6 +26,7 @@ typedef NS_ENUM(NSUInteger, RWTransferSource) {
     RWTransferSourceOther,
 };
 
+@class RWOutputStream, RWInputStream;
 @interface RWTransferViewModel : NSObject
 
 @property (copy, nonatomic, readonly)NSString *name;
@@ -53,6 +54,14 @@ typedef NS_ENUM(NSUInteger, RWTransferSource) {
 @property (copy, nonatomic, readonly)NSString *pathExtension;
 
 @property (strong, nonatomic)UIImage *cover;
+
+//*******************传输任务对应的流 Start********************//
+
+@property (strong, nonatomic)RWOutputStream *outputStream;
+
+@property (strong, nonatomic)RWInputStream *inputStream;
+
+//*******************传输任务对应的流 End********************//
 
 - (instancetype) initWithModel:(RWPhotoModel *)model;
 

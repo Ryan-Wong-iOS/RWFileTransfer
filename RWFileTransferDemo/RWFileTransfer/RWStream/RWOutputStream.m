@@ -81,6 +81,10 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
 {
     self.readyForSend = NO;
     [self.stream close];
+    self.stream = nil;
+    self.outputStream = nil;
+    self.imageData = nil;
+    [self.streamThread cancel];
     RWStatus(@"Stop");
 }
 
@@ -135,25 +139,29 @@ UInt32 const kRWStreamWriteMaxLength = 4096;
             
         case RWStreamEventEnd:{
             RWStatus(@"Send End");
-            [self stop];
             if (_delegate && [_delegate respondsToSelector:@selector(outputStream:transferEndWithStreamName:)]) {
                 [_delegate outputStream:self transferEndWithStreamName:_streamName];
             }
+            [self stop];
             break;
         }
             
         case RWStreamEventError:{
             RWStatus(@"Send Error");
-            [self stop];
             if (_delegate && [_delegate respondsToSelector:@selector(outputStream:transferErrorWithStreamName:)]) {
                 [_delegate outputStream:self transferErrorWithStreamName:_streamName];
             }
+            [self stop];
             break;
         }
             
         default:
             break;
     }
+}
+
+-(void)dealloc {
+    RWStatus(@"RWOutputStream 销毁")
 }
 
 @end

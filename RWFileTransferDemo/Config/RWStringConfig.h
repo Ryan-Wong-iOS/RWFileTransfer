@@ -19,6 +19,7 @@ typedef NS_ENUM(NSUInteger, RWTransferDataType) {
     RWTransferDataTypeSendTaskInfo,             //发送方：发送任务基本信息
     RWTransferDataTypeReceiveTaskInfo,          //接收方：反馈任务信息已接收
     RWTransferDataTypeReceiveProgress,          //接收方：反馈给发送方实际接收进度
+    RWTransferDataTypeCancel,                   //发送方、接收方：取消任务
     RWTransferDataTypeFinish,                   //接收方：完成接收
     RWTransferDataTypeError                     //发送方、接收方：发生错误
 };

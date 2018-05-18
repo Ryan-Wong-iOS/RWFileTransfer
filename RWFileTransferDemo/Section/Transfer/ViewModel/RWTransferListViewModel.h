@@ -12,6 +12,7 @@ typedef void(^fromReceiveBeginBlock)(NSDictionary *dict);
 typedef void(^fromReceiveProgressBlock)(NSDictionary *dict);
 typedef void(^fromReceiveFinishBlock)(NSDictionary *dict);
 typedef void(^fromReceiveErrorBlock)(NSDictionary *dict);
+typedef void(^fromReceiveCancelBlock)(NSDictionary *dict);
 
 @interface RWTransferListViewModel : RWBaseViewModel
 
@@ -22,8 +23,6 @@ typedef void(^fromReceiveErrorBlock)(NSDictionary *dict);
 #pragma mark - Sender
 
 - (void)sendPeerTaskInfo;
-
-//- (void)createSendStreamWithTarget:(id)target task:(RWTransferViewModel *)taskModel;
 
 - (void)nextReadyTask;
 
@@ -45,11 +44,17 @@ typedef void(^fromReceiveErrorBlock)(NSDictionary *dict);
 
 #pragma mark - Tell Sender Task Status
 
-- (void)receiveTaskProgressWithStreamName:(NSString *)name progress:(long long)progress;
+- (void)receiveTaskProgressWithStreamName:(NSString *)streamName progress:(long long)progress;
 
-- (void)receiveTaskFinishWithStreamName:(NSString *)name;
+- (void)receiveTaskFinishWithStreamName:(NSString *)streamName;
 
-- (void)receiveTaskErrorWithStreamName:(NSString *)name;
+- (void)receiveTaskErrorWithStreamName:(NSString *)streamName;
+
+#pragma mark - Common
+
+- (void)cancelTaskWithStreamName:(NSString *)streamName;
+
+- (void)sendTaskCancel:(fromReceiveCancelBlock)cancelBlock;
 
 #pragma mark - Handler Receive File
 
