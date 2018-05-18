@@ -1,6 +1,2 @@
 # RWFileTransferDemo
-
-![image](https://gitee.com/RyanPeng/RWFileTransferDemo/blob/master/1.JPG)
-![image](https://gitee.com/RyanPeng/RWFileTransferDemo/blob/master/2.JPG)
-![image](https://gitee.com/RyanPeng/RWFileTransferDemo/blob/master/3.JPG)
-![image](https://gitee.com/RyanPeng/RWFileTransferDemo/blob/master/4.gif)
+![输入图片说明](https://gitee.com/RyanPeng/RWFileTransferDemo/blob/master/1.JPG "在这里输入图片标题")
